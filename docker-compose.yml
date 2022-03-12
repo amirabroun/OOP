@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+
+    nginx:
+        container_name: nginx
+        build: ./Docker/nginx
+        links:
+            - php
+        volumes:
+            - /home/amirabroun/Documents/code/didishop/admin/:/usr/share/nginx/www
+        ports:
+            - 8000:80
+
+    php:
+        container_name: php
+        build: ./Docker/php
+        volumes:
+            - /home/amirabroun/Documents/code/didishop/admin/:/usr/share/nginx/www
+        working_dir: /home/amirabroun/Documents/code/didishop/admin:/usr/share/nginx/www
+        env_file:
+            - ./.env
+
+    mysql:
+      image: mysql
+      container_name: mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: "password"
+        MYSQL_DATABASE: "didishop"
+        TZ: Asia/Tehran
+      volumes:
+        - /home/amirabroun/Documents/code/didishop/database/mysql:/var/lib/mysql
+      ports:
+        - 3306:3306
+ 
+    phpmyadmin:
+      image: "phpmyadmin:latest"
+      container_name: phpmyadmin
+      restart: always
+      links:
+        - mysql
+      environment:
+        UPLOAD_LIMIT: 3000M
+        PMA_HOST: mysql
+        TZ: Asia/Tehran
+      ports:
+        - 8003:80
