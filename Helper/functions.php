@@ -2,15 +2,13 @@
 
 namespace Helper;
 
+use Helper\Functions\Validator;
+use Helper\Functions\Request;
 use Config\Config;
-use Functions\HelperValidator;
-use Functions\HelperRequest;
 use Throwable;
 
 class Helper extends Config
 {
-    use HelperRequest, HelperValidator;
-
     public static function sluggable($data)
     {
         return str_replace(' ', '-', $data);
@@ -28,13 +26,12 @@ class Helper extends Config
 
     public static function url($path = '')
     {
-
-        return Helper::originBaseUrl() . '/' . ltrim($path, '/');
+        return Request::originBaseUrl() . '/' . ltrim($path, '/');
     }
 
     public static function assets($path = '')
     {
-        return Helper::originBaseUrl() . '/Assets/' . ltrim($path, '/');
+        return Request::originBaseUrl() . '/Assets/' . ltrim($path, '/');
     }
 
     public static function setTitle()

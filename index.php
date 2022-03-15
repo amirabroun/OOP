@@ -6,7 +6,7 @@ use Helper\Helper;
 
 use DataBase\DataBase;
 
-var_dump((new DataBase)->cn);
+Helper::dd((new DataBase)->cn);
 
 die;
 include "Helper/functions.php";

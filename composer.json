@@ -3,11 +3,11 @@
     "autoload": {
         "classmap": [
             "Helper/",
+            "Helper/Functions",
             "Config/",
             "Assets/",
             "Controller/",
             "Database/",
-            "Functions/",
             "Model/",
             "Resorce/",
             "Route/"

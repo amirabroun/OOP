@@ -1,14 +1,9 @@
 <?php
 
-namespace Functions;
+namespace Helper\Functions;
 
-use Functions\HelperFunction;
-use Functions\HelperRequest;
-
-trait HelperValidator
+trait Validator
 {
-    use HelperRequest, HelperFunction;
-
     function validatorByRules($rules, $input)
     {
         $errors = [];

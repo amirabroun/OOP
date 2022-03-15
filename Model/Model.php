@@ -11,7 +11,7 @@ use PDO;
 
 class Model extends DataBase
 {
-    use PDO, HelperRequest, HelperFunction, HelperValidator;
+    use HelperValidator;
     private $connect;
 
     private function __construct()

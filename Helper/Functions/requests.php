@@ -2,14 +2,11 @@
 
 namespace Helper\Functions;
 
-use Functions\HelperValidator;
-use Functions\HelperFunction;
+use Config\Config;
 use Helper\Helper;
 
-trait HelperRequest
+class Request
 {
-    use HelperValidator, HelperFunction;
-
     public static function POST($key)
     {
         return $_POST[$key] ?? null;
@@ -37,7 +34,7 @@ trait HelperRequest
 
     public static function publicBaseUrl($path = '')
     {
-        return $_SERVER['REQUEST_SCHEME'] . '://' . parent::PUBLIC_DOMAIN . '/' . ltrim($path, '/');
+        return $_SERVER['REQUEST_SCHEME'] . '://' . Config::PUBLIC_DOMAIN . '/' . ltrim($path, '/');
     }
 
     public static function adminBaseUrl()
