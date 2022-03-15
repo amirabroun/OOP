@@ -1,6 +1,6 @@
 <?php
 
-namespace Functions;
+namespace Helper\Functions;
 
 use Functions\HelperValidator;
 use Functions\HelperFunction;

@@ -1,9 +1,14 @@
 <?php
 
+require "./vendor/autoload.php";
+
 use Helper\Helper;
 
-Helper::dd('aaa');
+use DataBase\DataBase;
 
+var_dump((new DataBase)->cn);
+
+die;
 include "Helper/functions.php";
 
 

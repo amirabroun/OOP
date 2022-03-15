@@ -1,0 +1,23 @@
+{
+    "name": "amirabroun/admin",
+    "autoload": {
+        "classmap": [
+            "Helper/",
+            "Config/",
+            "Assets/",
+            "Controller/",
+            "Database/",
+            "Functions/",
+            "Model/",
+            "Resorce/",
+            "Route/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "amirabroun",
+            "email": "abroon234@gmail.com"
+        }
+    ],
+    "require": {}
+}

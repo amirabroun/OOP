@@ -3,6 +3,7 @@
 namespace DataBase;
 
 use Config\Config;
+use Helper\Helper;
 use PDOException;
 use PDO;
 
@@ -12,13 +13,12 @@ class DataBase extends Config
 
     public function __construct()
     {
-        getenv('', '..');
-        $host = 'localhost';
-        $port = '3306';
-        $database = 'didishop';
-        $username = 'root';
-        $password = 'password';
-        $charset = 'utf8mb4';
+        $host = getenv("DB_HOST");
+        $port = getenv("DB_PORT");
+        $database = getenv("DATABASE");
+        $username = getenv('USERNAME');
+        $password = getenv('PASSWORD');
+        $charset = getenv('CHARSET');
         $dsn = "mysql:host=$host;port=$port;dbname=$database;charset=$charset";
 
         $options = [
@@ -29,7 +29,7 @@ class DataBase extends Config
         try {
             $this->cn = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $error) {
-            die("Internal Error $error");
+            die("<h3>$error</h3>");
         }
     }
 }
