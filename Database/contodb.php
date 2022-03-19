@@ -9,7 +9,7 @@ use PDO;
 
 class DataBase extends Config
 {
-    public $cn;
+    public static $cn;
 
     public function __construct()
     {

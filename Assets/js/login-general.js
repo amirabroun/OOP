@@ -5,7 +5,7 @@ $('#signin_form').on('submit', function (event) {
 	const username = $(this).find("input[name='username']").val();
 	const password = $(this).find("input[name='password']").val();
 	$.ajax({
-		url: '/requests/login.php',
+		url: '/Route/web.php',
 		dataType: 'json',
 		method: 'post',
 		data: {

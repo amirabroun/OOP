@@ -4,9 +4,9 @@ namespace Config;
 
 class Config
 {
-    public const SECRET_LOGIN = '#@%3rj8h0iopnwqf';
-    public const SECRET_KEY = '6LeTY6ccAAAAABhnJHEFkZ7Uwp76WP18OSbpW6Lk';
-    public const SITE_KEY = '6LeTY6ccAAAAAOMBUkuVz9jH2bI06X5vq1uB_CMh';
+    public const SECRET_LOGIN = '123456';
+    public const SECRET_KEY = '6Lcq2-QeAAAAAItXYWqIfYEOyz_EyIxLBQePclOi';
+    public const SITE_KEY = '6Lcq2-QeAAAAANaigtjLYlAAVzSPiiJbjjQtbLi1';
     public const APP_TITLE = 'دیدی شاپ';
 
     public const ADMIN_DOMAIN = 'admin.didishop.test';

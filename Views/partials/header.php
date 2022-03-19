@@ -1,4 +1,4 @@
-
+<?php require "./vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="fa" direction="rtl" dir="rtl" style="direction: rtl">
 
@@ -7,17 +7,18 @@
     <title>Metronic Live preview | Keenthemes</title>
     <meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="<?php echo Helper\Helper::dd($path); #(new Helper\Helper)->assets('/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/plugins/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/plugins/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/css/style.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/css/themes/layout/header/base/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/css/themes/layout/brand/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/css/themes/layout/aside/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo (new Helper\Helper)->assets('/media/logos/favicon.ico'); ?>" rel="shortcut icon" />
-    <link href="<?php echo (new Helper\Helper)->assets('/plugins/custom/datatables/datatables.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/plugins/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/css/style.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/css/themes/layout/header/base/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/css/themes/layout/brand/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/css/themes/layout/aside/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/media/logos/favicon.ico'); ?>" rel="shortcut icon" />
+    <link href="<?php echo assets('/plugins/custom/datatables/datatables.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
 </head>
+
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading footer-fixed">
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <a href="index.html">

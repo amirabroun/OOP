@@ -2,11 +2,11 @@
 
 use Models\Admin;
 
- $admin = (new Admin)->getAdmin($_SESSION['_admin_log_']['id']); ?>
+$admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <div class="brand flex-column-auto" id="kt_brand">
         <a href="index.html" class="brand-logo">
-            <img alt="Logo" src="<?php echo (new Helper\Helper)->assets('/media/logos/logo-light.png'); ?>" />
+            <img alt="Logo" src="<?php echo assets('/media/logos/logo-light.png'); ?>" />
         </a>
         <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
             <span class="svg-icon svg-icon svg-icon-xl">

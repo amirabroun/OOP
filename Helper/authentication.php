@@ -5,6 +5,7 @@ $ignore_page = [
     'login',
     'requests/login',
     'requests/order',
+    'Route/web'
 ];
 
 if (!isset($_SESSION['_admin_log_']) && !in_array($request_page, $ignore_page)) {

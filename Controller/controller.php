@@ -2,13 +2,7 @@
 
 namespace Controllers;
 
-use Helper\Helper;
 
-class Controller extends Helper
+class Controller
 {
-    public function FunctionName()
-    {
-        $a = new Helper();
-        $a->back();
-    }
 }

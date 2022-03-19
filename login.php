@@ -1,11 +1,15 @@
 <?php
 
+require __DIR__ . "/vendor/autoload.php";
+
+use Config\Config;
+
 if (isset($_SESSION['_admin_log_'])) {
     redirect('/');
 }
 
 if (isset($_GET['secret'])) {
-    if ($_GET['secret'] !== md5(SECRET_LOGIN)) {
+    if ($_GET['secret'] !== (Config::SECRET_LOGIN)) {
         http_response_code(404);
         exit();
     }
@@ -59,7 +63,7 @@ if (isset($_GET['secret'])) {
                                     <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" autocomplete="off" />
                                 </div>
                                 <div class="form-group">
-                                    <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>
+                                    <div class="g-recaptcha" data-sitekey="<?php echo Config::SITE_KEY; ?>"></div>
                                 </div>
                                 <div class="text-center pt-2">
                                     <button id="signin_submit" class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">ورود</button>
@@ -77,76 +81,14 @@ if (isset($_GET['secret'])) {
             </div>
         </div>
     </div>
-    
-    <script>
-        var KTAppSettings = {
-            "breakpoints": {
-                "sm": 576,
-                "md": 768,
-                "lg": 992,
-                "xl": 1200,
-                "xxl": 1400
-            },
-            "colors": {
-                "theme": {
-                    "base": {
-                        "white": "#ffffff",
-                        "primary": "#3699FF",
-                        "secondary": "#E5EAEE",
-                        "success": "#1BC5BD",
-                        "info": "#8950FC",
-                        "warning": "#FFA800",
-                        "danger": "#F64E60",
-                        "light": "#E4E6EF",
-                        "dark": "#181C32"
-                    },
-                    "light": {
-                        "white": "#ffffff",
-                        "primary": "#E1F0FF",
-                        "secondary": "#EBEDF3",
-                        "success": "#C9F7F5",
-                        "info": "#EEE5FF",
-                        "warning": "#FFF4DE",
-                        "danger": "#FFE2E5",
-                        "light": "#F3F6F9",
-                        "dark": "#D6D6E0"
-                    },
-                    "inverse": {
-                        "white": "#ffffff",
-                        "primary": "#ffffff",
-                        "secondary": "#3F4254",
-                        "success": "#ffffff",
-                        "info": "#ffffff",
-                        "warning": "#ffffff",
-                        "danger": "#ffffff",
-                        "light": "#464E5F",
-                        "dark": "#ffffff"
-                    }
-                },
-                "gray": {
-                    "gray-100": "#F3F6F9",
-                    "gray-200": "#EBEDF3",
-                    "gray-300": "#E4E6EF",
-                    "gray-400": "#D1D3E0",
-                    "gray-500": "#B5B5C3",
-                    "gray-600": "#7E8299",
-                    "gray-700": "#5E6278",
-                    "gray-800": "#3F4254",
-                    "gray-900": "#181C32"
-                }
-            },
-            "font-family": "Poppins"
-        };
-    </script>
+
     <script src="<?php echo assets('/plugins/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.js'); ?>"></script>
     <script src="<?php echo assets('/js/scripts.bundle.js'); ?>"></script>
     <script src="<?php echo assets('/js/login-general.js'); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <?php
-    if (isset($_SESSION['message'])) {
-    ?>
+    <?php if (isset($_SESSION['message'])) { ?>
         <script>
             Swal.fire({
                 title: "<?php echo $_SESSION['message']['title'] ?>",
@@ -159,10 +101,8 @@ if (isset($_GET['secret'])) {
                 }
             });
         </script>
-    <?php
-        unset($_SESSION['message']);
-    }
-    ?>
+    <?php unset($_SESSION['message']);
+    } ?>
 </body>
 
 </html>

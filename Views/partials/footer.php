@@ -87,14 +87,14 @@
         "font-family": "Poppins"
     };
 </script>
-<script src="<?php echo (new Helper\Helper)->assets('/plugins/global/plugins.bundle.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/plugins/custom/prismjs/prismjs.bundle.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/js/scripts.bundle.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/plugins/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/js/pages/widgets.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/js/config.datatable.js'); ?>"></script>
-<script src="<?php echo (new Helper\Helper)->assets('/js/app.js'); ?>"></script>
+<script src="<?php echo assets('/plugins/global/plugins.bundle.js'); ?>"></script>
+<script src="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.js'); ?>"></script>
+<script src="<?php echo assets('/js/scripts.bundle.js'); ?>"></script>
+<script src="<?php echo assets('/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
+<script src="<?php echo assets('/plugins/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
+<script src="<?php echo assets('/js/pages/widgets.js'); ?>"></script>
+<script src="<?php echo assets('/js/config.datatable.js'); ?>"></script>
+<script src="<?php echo assets('/js/app.js'); ?>"></script>
 
 
 <?php

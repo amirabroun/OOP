@@ -2,15 +2,16 @@
 
 namespace Controllers;
 
-use Helper\Helper;
+use Config\Config;
 use Models\Admin;
+use Helper\Functions\Request;
 
 class LoginController extends Controller
 {
-    public function adminLogin()
+    public static function adminLogin($username, $password)
     {
-        if (!$admin_login = (new Admin())->doLogin(POST('username'), POST('password'))) {
-            Helper::responseJson([
+        if (!$admin_login = Admin::doLogin($username, $password)) {
+            responseJson([
                 'data' => '',
                 'status' => 201,
                 'message' => [
@@ -21,7 +22,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if (!recaptchaVerify(parent::SECRET_KEY, POST('grecaptcha'))) {
+        if (!recaptchaVerify(Config::SECRET_KEY, POST('grecaptcha'))) {
             responseJson([
                 'data' => '',
                 'status' => 201,

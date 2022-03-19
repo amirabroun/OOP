@@ -1,8 +1,9 @@
 <?php
-include "views/partials/header.php";
 
-include "views/partials/aside.php";
+include "Views/partials/header.php";
 
-include "views/contents/manage-brands-contents.php";
+include "Views/partials/aside.php";
 
-include "views/partials/footer.php";
+include "Views/contents/manage-brands-contents.php";
+
+include "Views/partials/footer.php";
