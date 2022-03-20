@@ -1,8 +1,8 @@
-## Laravel 8 Complete Blog
+## DDShop
 
-•	Author: Amir Aabroun <br>
+•	Author: Amir Abroun <br>
 
-## Docker Requirements 
+## Docker Images 
 •	PHP Nginx  <br>
 •	PHP 8  <br>
 •	MySQL <br>
