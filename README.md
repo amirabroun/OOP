@@ -1,5 +1,4 @@
-<p align="center">DDShop</p>
-## DDShop
+## Laravel 8 Complete Blog
 
 •	Author: Amir Aabroun <br>
 
