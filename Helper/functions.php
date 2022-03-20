@@ -1,10 +1,10 @@
 <?php
 
-require 'Functions/requests.php';
-require 'Functions/validations.php';
 
 use Config\Config;
 
+require 'Functions/requests.php';
+require 'Functions/validations.php';
 
 function sluggable($data)
 {
@@ -57,11 +57,17 @@ function dd(...$data)
     die(var_dump($data));
 }
 
+// function ddd($data)
+// {
+//     return (json_encode($data));
+// }
+
 function bcrypt($password, $hash = null)
 {
     if (!is_null($hash)) {
         return password_verify($password, $hash);
     }
+
     return password_hash($password, PASSWORD_BCRYPT);
 }
 

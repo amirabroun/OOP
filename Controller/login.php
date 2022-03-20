@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace Controller;
 
 use Config\Config;
 use Models\Admin;
@@ -10,18 +10,6 @@ class LoginController extends Controller
 {
     public static function adminLogin($username, $password)
     {
-        if (!$admin_login = Admin::doLogin($username, $password)) {
-            responseJson([
-                'data' => '',
-                'status' => 201,
-                'message' => [
-                    'title' => 'ورود ناموفق',
-                    'text' => 'اطلاعات وارد شده نامعتبر است!',
-                    'type' => 'error'
-                ]
-            ]);
-        }
-
         if (!recaptchaVerify(Config::SECRET_KEY, POST('grecaptcha'))) {
             responseJson([
                 'data' => '',
@@ -29,6 +17,18 @@ class LoginController extends Controller
                 'message' => [
                     'title' => 'ورود ناموفق',
                     'text' => 'لطفا ثابت کنید که ربات نیستید!',
+                    'type' => 'error'
+                ]
+            ]);
+        }
+
+        if (!$admin_login = Admin::doLogin($username, $password)) {
+            responseJson([
+                'data' => '',
+                'status' => 201,
+                'message' => [
+                    'title' => 'ورود ناموفق',
+                    'text' => 'اطلاعات وارد شده نامعتبر است!',
                     'type' => 'error'
                 ]
             ]);

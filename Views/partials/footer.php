@@ -97,9 +97,7 @@
 <script src="<?php echo assets('/js/app.js'); ?>"></script>
 
 
-<?php
-if (isset($_SESSION['message'])) {
-?>
+<?php if (isset($_SESSION['message'])) { ?>
     <script>
         Swal.fire({
             title: "<?php echo $_SESSION['message']['title'] ?>",
@@ -112,10 +110,8 @@ if (isset($_SESSION['message'])) {
             }
         });
     </script>
-<?php
-    unset($_SESSION['message']);
-}
-?>
+<?php unset($_SESSION['message']);
+} ?>
 </body>
 
 </html>

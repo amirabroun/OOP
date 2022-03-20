@@ -2,9 +2,11 @@
     "name": "amirabroun/admin",
     "autoload": {
         "psr-4": {
-            "Controllers\\" : "Controller/",
-            "Route\\" : "Route/",
-            "DataBase\\" : "Database/"
+            "Controller\\": "Controller/",
+            "Route\\": "Route/",
+            "DataBase\\": "DataBase/",
+            "Config\\" : "Config/",
+            "Model\\" : "Model" 
         },
         "classmap": [
             "Assets/",
@@ -17,8 +19,9 @@
             "Route/"
         ],
         "files": [
-            "vendor/autoload.php",
-            "core.php"
+            "Helper/helper_session.php",
+            "Helper/functions.php",
+            "Helper/authentication.php"
         ]
     },
     "authors": [

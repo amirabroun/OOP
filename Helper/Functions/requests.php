@@ -43,3 +43,17 @@ function pageName()
 {
     return str_replace(['/', '.php'], '', $_SERVER['SCRIPT_NAME']);
 }
+
+function checkAction($action)
+{
+    if (!(POST("action") && POST("action") === $action)) {
+        return false;
+    }
+
+    return true;
+}
+
+function getAction()
+{
+    dd(POST("action"));
+}

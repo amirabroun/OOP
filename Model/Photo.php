@@ -10,7 +10,7 @@ class Photo extends Model
         $src = sanitise($src);
 
         $sql = "insert into photos (src, name) values (?,?);";
-        $result = parent::$cn->prepare($sql);
+        $result = Model::prepareSQL($sql);
 
         $result->bindValue(1, $src);
         $result->bindValue(2, $name);

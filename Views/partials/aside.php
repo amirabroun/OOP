@@ -24,7 +24,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
         <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
             <ul class="menu-nav">
                 <li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="<?php echo $this->url('/') ?>" class="menu-link">
+                    <a href="<?php echo url('/') ?>" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -59,7 +59,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/manage-categories.php" class="menu-link menu-toggle">
+                                <a href="<?php echo url('/manage-categories.php')?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -750,7 +750,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                         </div>
                     </li>
                     <li class="menu-item menu-item-submenu menu-item-rel">
-                        <a href="<?php echo $this->url('log-out.php') ?>" class="menu-link">
+                        <a href="<?php echo url('log-out.php') ?>" class="menu-link">
                             <span class="menu-text">خروج</span>
                         </a>
                     </li>
@@ -805,7 +805,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
 
                 <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
                     <form>
-                        <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(<?php echo $this->assets('/media/misc/bg-1.jpg'); ?>)">
+                        <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(<?php echo assets('/media/misc/bg-1.jpg'); ?>)">
                             <h4 class="d-flex flex-center rounded-top">
                                 <span class="text-white">User Notifications</span>
                                 <span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">23 new</span>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace Controller;
 
-use Controllers\Controller;
+use Controller\Controller;
 use Models\Brand;
 
 class BrandController extends Controller
