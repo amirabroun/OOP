@@ -6,7 +6,7 @@
             "Route\\": "Route/",
             "DataBase\\": "DataBase/",
             "Config\\": "Config/",
-            "Model\\": "Model"
+            "Model\\": "Model/"
         },
         "classmap": [
             "Assets/",
@@ -15,11 +15,9 @@
             "Controller/",
             "Database/",
             "Model/",
-            "Views/",
-            "Route/"
+            "Views/"
         ],
         "files": [
-            "Helper/helper_session.php",
             "Helper/functions.php",
             "Route/auth.php",
             "Route/web.php"
