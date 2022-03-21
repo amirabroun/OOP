@@ -24,9 +24,9 @@ function back($url = '/')
     redirect($_SERVER['HTTP_REFERER'] ?? $url);
 }
 
-function fail()
+function fail($code = 404)
 {
-    http_response_code(404);
+    http_response_code($code);
     exit();
 }
 
