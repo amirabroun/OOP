@@ -5,8 +5,8 @@
             "Controller\\": "Controller/",
             "Route\\": "Route/",
             "DataBase\\": "DataBase/",
-            "Config\\" : "Config/",
-            "Model\\" : "Model" 
+            "Config\\": "Config/",
+            "Model\\": "Model"
         },
         "classmap": [
             "Assets/",
@@ -21,7 +21,8 @@
         "files": [
             "Helper/helper_session.php",
             "Helper/functions.php",
-            "Helper/authentication.php"
+            "Route/auth.php",
+            "Route/web.php"
         ]
     },
     "authors": [

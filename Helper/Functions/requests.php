@@ -24,6 +24,12 @@ function back($url = '/')
     redirect($_SERVER['HTTP_REFERER'] ?? $url);
 }
 
+function fail()
+{
+    http_response_code(404);
+    exit();
+}
+
 function originBaseUrl()
 {
     return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'];
@@ -41,7 +47,7 @@ function adminBaseUrl()
 
 function pageName()
 {
-    return str_replace(['/', '.php'], '', $_SERVER['SCRIPT_NAME']);
+    return ltrim(str_replace('.php', '', $_SERVER['SCRIPT_NAME']), '/');
 }
 
 function checkAction($action)

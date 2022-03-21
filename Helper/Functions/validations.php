@@ -322,3 +322,14 @@ function validateLenPass($data)
     }
     return $data;
 }
+
+function validateProductCode(string $data)
+{
+    if (trim($data) === "" || empty(trim($data))) {
+        return false;
+    }
+    if (!preg_match("/^([A-Z]{3}+)-(\d{8})$/", $data)) {
+        return false;
+    }
+    return $data;
+}

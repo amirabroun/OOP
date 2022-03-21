@@ -125,17 +125,6 @@ function price($price, $text = true): string
     return number_format($price) . ($text === true ? ' تومان' : null);
 }
 
-function validateProductCode(string $data)
-{
-    if (trim($data) === "" || empty(trim($data))) {
-        return false;
-    }
-    if (!preg_match("/^([A-Z]{3}+)-(\d{8})$/", $data)) {
-        return false;
-    }
-    return $data;
-}
-
 function isAjaxRequest(): bool
 {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';

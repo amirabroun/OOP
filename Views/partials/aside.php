@@ -59,7 +59,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="<?php echo url('/manage-categories.php')?>" class="menu-link menu-toggle">
+                                <a href="<?php echo url('/manage-categories.php') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -750,9 +750,10 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                         </div>
                     </li>
                     <li class="menu-item menu-item-submenu menu-item-rel">
-                        <a href="<?php echo url('log-out.php') ?>" class="menu-link">
-                            <span class="menu-text">خروج</span>
-                        </a>
+                        <form action="" method="post">
+                            <input type="hidden" name="action" value="log-out">
+                            <button type="submit" class="btn btn-light">خروج</button>
+                        </form>
                     </li>
                 </ul>
             </div>
