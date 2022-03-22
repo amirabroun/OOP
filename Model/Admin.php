@@ -10,16 +10,13 @@ class Admin extends Model
 {
     public static function doLogin($username, $password)
     {
-        $sql = "SELECT * From admins where username = ? LIMIT 1";
+        $action = new Model("SELECT * From admins where username = ? LIMIT 1");
+        $action->execute($username);
 
-        $result = Model::prepareSQL($sql);
-        $result->bindValue(1, $username);
-        $result->execute();
-
-        if (!$result->rowCount() > 0)
+        if (!$action->rowCount() > 0)
             return false;
 
-        $admin = $result->fetch(PDO::FETCH_OBJ);
+        $admin = $action->fetchObject();
         if (!bcrypt($password, $admin->password))
             return false;
 
@@ -28,16 +25,14 @@ class Admin extends Model
 
     public static function getAdmin($id)
     {
-        $sql = "SELECT * From admins where id = ? LIMIT 1";
+        $action = new Model("SELECT * From admins where id = ? LIMIT 1");
 
-        $result = Model::prepareSQL($sql);
-        $result->bindValue(1, $id);
-        $result->execute();
+        $action->execute($id);
 
-        if (!$result->rowCount() > 0) {
+        if (!$action->rowCount() > 0) {
             return false;
         }
 
-        return $result->fetch(PDO::FETCH_OBJ);
+        return $action->fetchObject();
     }
 }

@@ -19,14 +19,13 @@
                                     <label>عنوان:</label>
                                     <input type="text" name="title" class="form-control" placeholder="عنوان دسته بندی را وارد کنید..." />
                                 </div>
-                                <?php $category_parents = getCategoryParents(); ?>
+                                <?php $category_parents = Models\Category::getCategoryParents(); ?>
                                 <div <?php echo (!$category_parents) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>دسته والد:</label>
                                     <select name="parent" title="دسته والد" class="form-control selectpicker" data-size="7" data-live-search="true">
                                         <?php
                                         if ($category_parents) {
-                                            foreach ($category_parents as $category) {
-                                        ?>
+                                            foreach ($category_parents as $category) { ?>
                                                 <option value="<?php echo $category->id ?>"><?php echo $category->title ?></option>
                                         <?php
                                             }
@@ -63,7 +62,7 @@
                         <h3 class="card-label">مدیریت دسته بندی ها</h3>
                     </div>
                 </div>
-                <?php $categories = getCategories(); ?>
+                <?php $categories = Models\Category::getCategories(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_categories" style="margin-top: 13px;text-align: center">
                         <thead>
@@ -76,9 +75,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            foreach ($categories as $key => $category) {
-                            ?>
+                            <?php foreach ($categories as $key => $category) { ?>
                                 <tr>
                                     <td><?php echo $key + 1 ?></td>
                                     <td><?php echo $category->title; ?></td>
@@ -99,8 +96,7 @@
                                     </td>
                                 </tr>
                             <?php
-                            }
-                            ?>
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -143,9 +139,7 @@
                             <label>عنوان:</label>
                             <input type="text" name="title" class="form-control" placeholder="عنوان دسته بندی را وارد کنید..." />
                         </div>
-                        <?php
-                        $category_parents = getCategoryParents();
-                        ?>
+                        <?php $category_parents = Models\Category::getCategoryParents(); ?>
                         <div <?php echo (!$category_parents) ? 'hidden' : null ?> class="col-lg-6">
                             <label>دسته والد:</label>
                             <select name="parent" title="دسته والد" class="form-control selectpicker" data-size="7" data-live-search="true">

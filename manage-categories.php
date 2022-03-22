@@ -1,8 +1,8 @@
 <?php
-include "views/partials/header.php";
+include "Views/partials/header.php";
 
-include "views/partials/aside.php";
+include "Views/partials/aside.php";
 
-include "views/contents/manage-categories_content.php";
+include "Views/contents/manage-categories_content.php";
 
-include "views/partials/footer.php";
+include "Views/partials/footer.php";

@@ -4,21 +4,19 @@ namespace Models;
 
 class Photo extends Model
 {
-    public function createPhoto($name, $src)
+    public static function createPhoto($name, $src)
     {
         $name = sanitise($name);
         $src = sanitise($src);
 
-        $sql = "insert into photos (src, name) values (?,?);";
-        $result = Model::prepareSQL($sql);
+        $action = new Model("INSERT into photos (src, name) values (?,?);");
 
-        $result->bindValue(1, $src);
-        $result->bindValue(2, $name);
+        $action->bindValue([$src, $name]);
 
-        if (!$result->execute()) {
+        if (!$action->execute()) {
             return false;
         }
-        
-        return parent::$cn->lastInsertId();
+
+        return $action->lastInsertId();
     }
 }

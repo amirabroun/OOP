@@ -15,7 +15,7 @@ class Config
     public const SECRET_LOGIN = '123456';
     public const SECRET_KEY = '6Lcq2-QeAAAAAItXYWqIfYEOyz_EyIxLBQePclOi';
     public const SITE_KEY = '6Lcq2-QeAAAAANaigtjLYlAAVzSPiiJbjjQtbLi1';
-    public const APP_TITLE = 'دیدی شاپ';
+    public const APP_TITLE = 'dd Shop';
 
     public const IGNORE_AUTH_PAGE = [
         'test',

@@ -23,7 +23,7 @@ function sanitiseNumber($data)
 
 function url($path = '')
 {
-    return originBaseUrl() . '/' . ltrim($path, '/');
+    return ltrim($path, '/');
 }
 
 function assets($path = '')

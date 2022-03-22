@@ -7,54 +7,38 @@ use Models\Admin;
 
 class Brand extends Model
 {
-    public function getBrands()
+    public static function getBrands()
     {
-        $sql = "SELECT * From brands";
+        $action = new Model("SELECT * From brands");
 
-        $result = parent::$cn->prepare($sql);
-        $result->execute();
+        $action->execute();
 
-        if (!$result->rowCount() > 0) {
+        if (!$action->rowCount() > 0) {
             return false;
         }
 
-        return $result->fetchAll(PDO::FETCH_OBJ);
+        return $action->fetchAllObject();
     }
 
-    function createBrand($title, $description): bool
+    public static function createBrand($title, $description): bool
     {
         $title = sanitise($title);
         $description = sanitise($description);
 
-        $sql = "insert into brands(title, description) values (?,?)";
+        $action = new Model("INSERT INTO brands(title, description) VALUES (?,?)");
 
-        $result = parent::$cn->prepare($sql);
-        $result->bindValue(1, $title);
-        $result->bindValue(2, $description);
-
-        if (!$result->execute()) {
-            return false;
-        }
-
-        return true;
+        return $action->execute([
+            $title, $description
+        ]);
     }
 
-    function updateBrand($id, $title, $description): bool
+    public static function updateBrand(int $id, $title, $description): bool
     {
         $title = sanitise($title);
         $description = sanitise($description);
-        $id = (int)$id;
 
-        $sql = "update brands set title=?, description=? where id=$id";
+        $action = new Model("update brands set title=?, description=? where id=$id");
 
-        $result = parent::$cn->prepare($sql);
-        $result->bindValue(1, $title);
-        $result->bindValue(2, $description);
-
-        if (!$result->execute()) {
-            return false;
-        }
-
-        return true;
+        return $action->execute([$title, $description]);
     }
 }

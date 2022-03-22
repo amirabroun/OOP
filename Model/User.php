@@ -6,17 +6,16 @@ use PDO;
 
 class User extends Model
 {
-    function getUsers()
+    public static function getUsers()
     {
-        $sql = "SELECT * From users";
+        $action = new Model("SELECT * From users");
 
-        $result = parent::$cn->prepare($sql);
-        $result->execute();
+        $action->execute();
 
-        if (!$result->rowCount() > 0) {
+        if (!$action->rowCount() > 0) {
             return false;
         }
-        
-        return $result->fetchAll(PDO::FETCH_OBJ);
+
+        return $action->fetchAllObject();
     }
 }

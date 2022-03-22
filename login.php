@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>ورود مدیران</title>
+    <title><?php echo Config\Config::APP_TITLE ?> | ورود مدیران</title>
     <meta name="description" content="Login page example" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="<?php echo assets('/css/pages/login/login-2.css'); ?>" rel="stylesheet" type="text/css" />

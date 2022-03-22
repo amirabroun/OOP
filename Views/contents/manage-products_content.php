@@ -19,7 +19,7 @@
                                     <label>عنوان:</label>
                                     <input type="text" name="title" class="form-control" placeholder="عنوان محصول را وارد کنید...">
                                 </div>
-                                <?php $categories = getCategories(); ?>
+                                <?php $categories = Models\Category::getCategories(); ?>
                                 <div <?php echo (!$categories) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>دسته بندی:</label>
                                     <select multiple name="category[]" title="دسته بندی را انتخاب کنید..." class="form-control selectpicker" data-size="7" data-live-search="true">
@@ -27,7 +27,7 @@
                                         if ($categories) {
                                             foreach ($categories as $category) { ?>
                                                 <option value="<?php echo $category->id ?>"><?php echo $category->title ?></option>
-                                                <?php
+                                        <?php
                                             }
                                         }
                                         ?>
@@ -46,7 +46,7 @@
                                     <label>تعداد:</label>
                                     <input type="number" name="stock" class="form-control" value="1" placeholder="اعداد را لاتین وارد کنید...">
                                 </div>
-                                <?php $brands = getBrands(); ?>
+                                <?php $brands = Models\Brand::getBrands(); ?>
                                 <div <?php echo (!$brands) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>برند:</label>
                                     <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
@@ -89,7 +89,7 @@
                         <h3 class="card-label">نمایش محصولات</h3>
                     </div>
                 </div>
-                <?php $products = getProducts(); ?>
+                <?php $products = Models\Product::getProducts(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_products" style="margin-top: 13px;text-align: center">
                         <thead>
@@ -184,8 +184,8 @@
 
                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                             <i class="fa fa-pen icon-sm text-muted"></i>
-                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg"/>
-                            <input type="hidden" name="profile_avatar_remove"/>
+                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="profile_avatar_remove" />
                         </label>
 
                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
@@ -197,8 +197,8 @@
 
                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                             <i class="fa fa-pen icon-sm text-muted"></i>
-                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg"/>
-                            <input type="hidden" name="profile_avatar_remove"/>
+                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="profile_avatar_remove" />
                         </label>
 
                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
@@ -210,8 +210,8 @@
 
                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                             <i class="fa fa-pen icon-sm text-muted"></i>
-                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg"/>
-                            <input type="hidden" name="profile_avatar_remove"/>
+                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="profile_avatar_remove" />
                         </label>
 
                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
@@ -223,8 +223,8 @@
 
                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                             <i class="fa fa-pen icon-sm text-muted"></i>
-                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg"/>
-                            <input type="hidden" name="profile_avatar_remove"/>
+                            <input type="file" name="picture_product_file[]" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="profile_avatar_remove" />
                         </label>
 
                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
@@ -259,7 +259,7 @@
                             <label>عنوان:</label>
                             <input type="text" name="title" class="form-control" placeholder="عنوان محصول را وارد کنید..." />
                         </div>
-                        <?php $brands = getBrands() ?>
+                        <?php $brands = Models\Brand::getBrands() ?>
                         <div <?php echo (!$brands) ? 'hidden' : null ?> class="col-lg-6">
                             <label>انتخاب برند</label>
                             <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">

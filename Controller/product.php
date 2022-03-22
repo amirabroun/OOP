@@ -2,12 +2,13 @@
 
 namespace Controller;
 
+use Config\Config;
 use Models\Photo;
 use Models\Product;
 
 class ProductController
 {
-    public function createProduct()
+    public static function createProduct()
     {
         $validator = validator([
             'id' => 'required|number',
@@ -19,38 +20,32 @@ class ProductController
         if (!$validator)
             back();
 
-        $createProduct = (new Product)->createProduct(
-            POST('title'),
-            convertNumberToEnglish(POST('price')),
-            convertNumberToEnglish(POST('price_discounted')),
-            POST('stock'),
-            POST('brand'),
-            POST('description')
-        );
+        $createProduct = Product::createProduct(POST('title'), convertNumberToEnglish(POST('price')), convertNumberToEnglish(POST('price_discounted')), POST('stock'), POST('brand'), POST('description'));
 
-        if ($createProduct) {
-            foreach (POST('category') as $item) {
-                (new Product)->createCategoryProduct($item, $createProduct);
-            }
-
-            $_SESSION['message'] = [
-                'title' => 'عملیات موفق',
-                'type' => 'success',
-                'text' => 'محصول با موفقیت ایجاد شد!',
-            ];
-
-            back();
-        } else {
-
+        if (!$createProduct) {
             $_SESSION['message'] = [
                 'title' => 'عملیات ناموفق',
                 'type' => 'error',
                 'text' => 'عملیات با خطا مواجه شد!!',
             ];
+
+            back();
         }
+        
+        foreach (POST('category') as $item) {
+            Product::createCategoryProduct($item, $createProduct);
+        }
+
+        $_SESSION['message'] = [
+            'title' => 'عملیات موفق',
+            'type' => 'success',
+            'text' => 'محصول با موفقیت ایجاد شد!',
+        ];
+
+        back();
     }
 
-    public function uploadPictureProduct()
+    public static function uploadPictureProduct()
     {
         if (array_sum($_FILES['picture_product_file']['size']) === 0) {
             responseJson([
@@ -89,16 +84,16 @@ class ProductController
             $suffix = pathinfo($file['name'], PATHINFO_EXTENSION);
             $new_name = md5($original_name . microtime()) . '.' . $suffix;
             $path = '/images/products/';
-            $full_path = rtrim(PUBLIC_DOMAIN_ROOT, '/') . $path . $new_name;
+            $full_path = rtrim(Config::PUBLIC_DOMAIN_ROOT, '/') . $path . $new_name;
 
             if (@move_uploaded_file($file['tmp_name'], $full_path)) {
-                $createPhoto = (new Photo)->createPhoto($new_name, $path);
+                $createPhoto = Photo::createPhoto($new_name, $path);
 
                 if ($createPhoto) {
 
-                    (new Product)->deletePhotoProduct($_POST['product_id'], $key + 1);
+                    Product::deletePhotoProduct($_POST['product_id'], $key + 1);
 
-                    $createPhotoProduct = (new Product)->createPhotoProduct($createPhoto, $_POST['product_id'], $key + 1);
+                    $createPhotoProduct = Product::createPhotoProduct($createPhoto, $_POST['product_id'], $key + 1);
 
                     if ($createPhotoProduct) {
                         continue;
@@ -120,7 +115,7 @@ class ProductController
         ]);
     }
 
-    public function updateProduct()
+    public static function updateProduct()
     {
         $validator = validator([
             'id' => 'required|number',
@@ -132,7 +127,7 @@ class ProductController
         if (!$validator)
             back();
 
-        if (!(new Product)->updateProduct(POST('id'), POST('brand_id'), POST('title'), POST('description'))) {
+        if (!Product::updateProduct(POST('id'), POST('brand_id'), POST('title'), POST('description'))) {
             responseJson([
                 'status' => 201,
                 'message' => [

@@ -1,8 +1,4 @@
-<?php
-
-use Models\Admin;
-
-$admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
+<?php $admin =  Models\Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <div class="brand flex-column-auto" id="kt_brand">
         <a href="index.html" class="brand-logo">
@@ -59,7 +55,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="<?php echo url('/manage-categories.php') ?>" class="menu-link menu-toggle">
+                                <a href="<?php echo url('manage-categories.php') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -67,7 +63,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/manage-brands.php" class="menu-link menu-toggle">
+                                <a href="<?php echo url('manage-brands.php') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -75,7 +71,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/test.php" class="menu-link menu-toggle">
+                                <a href="<?php echo url('test.php') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -94,7 +90,7 @@ $admin =  Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
                     </div>
                 </li>
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="/manage-products.php" class="menu-link menu-toggle">
+                    <a href="<?php echo url('manage-products.php') ?>" class="menu-link menu-toggle">
                         <i class="menu-bullet menu-bullet-line">
                             <span></span>
                         </i>
