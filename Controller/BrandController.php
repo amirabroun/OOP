@@ -1,20 +1,18 @@
 <?php
 
-namespace Controller;
+namespace Controllers;
 
-use Controller\Controller;
+use Controllers\Controller;
 use Models\Brand;
 
 class BrandController extends Controller
 {
-    use Controller;
-
-    public function createBrand()
+    public static function createBrand()
     {
         if (!validator(['title', 'description']))
             back();
 
-        if (!(new Brand)->createBrand(POST('title'), POST('description'))) {
+        if (!Brand::createBrand(POST('title'), POST('description'))) {
             $_SESSION['message'] = [
                 'title' => 'عملیات ناموفق',
                 'type' => 'error',
@@ -31,12 +29,12 @@ class BrandController extends Controller
         }
     }
 
-    public function updateBrand()
+    public static function updateBrand()
     {
         if (!validator(['title_brand', 'description_brand']))
             back();
 
-        if (!(new Brand)->updateBrand(POST('id_brand'), POST('title_brand'), POST('description_brand'))) {
+        if (!Brand::updateBrand(POST('id_brand'), POST('title_brand'), POST('description_brand'))) {
             responseJson([
                 'status' => 201,
                 'message' => [

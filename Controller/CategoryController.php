@@ -1,17 +1,17 @@
 <?php
 
-namespace Controller;
+namespace Controllers;
 
 use Models\Category as ModelsCategory;
 
-class CategoryController
+class CategoryController extends Controller
 {
-    public function createCategory()
+    public static function createCategory()
     {
         if (!validator(['title', 'description', 'parent']))
             back();
 
-        if (!(new ModelsCategory)->createCategory(POST('parent'), POST('title'), POST('description'))) {
+        if (!ModelsCategory::createCategory(POST('parent'), POST('title'), POST('description'))) {
             $_SESSION['message'] = [
                 'title' => 'عملیات ناموفق',
                 'type' => 'error',
@@ -28,12 +28,12 @@ class CategoryController
         ];
     }
 
-    public function updateCategory()
+    public static function updateCategory()
     {
         if (!validator(['title', 'description', 'parent']))
             back();
 
-        if (!(new ModelsCategory)->updateCategory(POST('id'), POST('parent'), POST('title'), POST('description'))) {
+        if (!ModelsCategory::updateCategory(POST('id'), POST('parent'), POST('title'), POST('description'))) {
             responseJson([
                 'status' => 201,
                 'message' => [

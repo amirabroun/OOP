@@ -4,18 +4,30 @@
 use Config\Config;
 
 
-function POST($key)
+function POST($key = 'all-$_POST')
 {
+    if ($key == 'all-$_POST') {
+        return $_POST;
+    }
+
     return $_POST[$key] ?? null;
 }
 
-function GET($key)
+function GET($key = 'all-$_GET')
 {
+    if ($key == 'all-$_GET') {
+        return $_GET;
+    }
+
     return $_GET[$key] ?? null;
 }
 
-function REQUEST($key)
+function REQUEST($key = 'all-$_REQUEST')
 {
+    if ($key == 'all-$_REQUEST') {
+        return $_REQUEST;
+    }
+    
     return $_REQUEST[$key] ?? null;
 }
 

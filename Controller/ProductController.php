@@ -1,12 +1,12 @@
 <?php
 
-namespace Controller;
+namespace Controllers;
 
 use Config\Config;
 use Models\Photo;
 use Models\Product;
 
-class ProductController
+class ProductController extends Controller
 {
     public static function createProduct()
     {

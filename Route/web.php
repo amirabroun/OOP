@@ -1,10 +1,11 @@
 <?php require __DIR__ . "/../vendor/autoload.php";
 
 use Config\Config;
-use Controller\LoginController;
+use Controllers\LoginController;
+use Requests\LoginRequest;
 
 if (checkAction("admin_login")) {
-    LoginController::adminLogin(POST("username"), POST("password"));
+    LoginController::adminLogin(new LoginRequest);
 }
 
 if (checkAction("log-out")) {

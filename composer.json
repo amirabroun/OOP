@@ -6,6 +6,7 @@
             "Route\\": "Route/",
             "DataBase\\": "DataBase/",
             "Config\\": "Config/",
+            "Requests\\": "Request/",
             "Model\\": "Model/"
         },
         "classmap": [

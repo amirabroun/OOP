@@ -1,15 +1,18 @@
 <?php
 
-namespace Controller;
+namespace Controllers;
 
 use Config\Config;
 use Models\Admin;
-use Helper\Functions\Request;
+use Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public static function adminLogin($username, $password)
+    public static function adminLogin(LoginRequest $request)
     {
+        dd($request->post->username);
+        $request->validate();
+        
         if (!recaptchaVerify(Config::SECRET_KEY, POST('grecaptcha'))) {
             responseJson([
                 'data' => '',
@@ -22,7 +25,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if (!$admin_login = Admin::doLogin($username, $password)) {
+        if (!$admin_login = Admin::doLogin('','')) {
             responseJson([
                 'data' => '',
                 'status' => 201,
