@@ -6,20 +6,25 @@ function validator(array $fields)
     foreach ($fields as $key => $field) {
         $rules = explode('|', $field);
         $validatorByRules = validatorByRules($rules, $key);
+
         if (!empty($validatorByRules)) {
             $errors[$key] = $validatorByRules;
         }
     }
 
-    if (!empty($errors)) {
-        return [
-            'pageName' => pageName(),
-            'errors' => $errors,
-            'title' => 'لطفا خطا های زیر را برطرف کنید: ',
-        ];
+    if (!isEmpty($errors)) {
+        $cleanErrors = [];
+        foreach ($errors as $key => $value) {
+            $variable = $errors[$key];
+            foreach ($variable as $value) {
+                array_push($cleanErrors, [$key => $value]);
+            }
+        }
+
+        return $cleanErrors;
     }
 
-    return true;
+    return [];
 }
 
 function validatorByRules($rules, $input)
@@ -28,28 +33,28 @@ function validatorByRules($rules, $input)
     foreach ($rules as $rule) {
         if ($rule === 'required') {
             if (isEmpty($_REQUEST[$input])) {
-                $errors[] = ['rule' => $rule];
+                $errors[] = $rule;
             }
             continue;
         }
         if ($rule === 'number') {
             if (isset($_REQUEST[$input]) && !validateNumber($_REQUEST[$input])) {
-                $errors[] = ['rule' => $rule];
+                $errors[] = $rule;
             }
         }
         if ($rule === 'mobile') {
             if (isset($_REQUEST[$input]) && !validateMobile($_REQUEST[$input])) {
-                $errors[] = ['rule' => $rule];
+                $errors[] = $rule;
             }
         }
         if ($rule === 'password') {
             if (isset($_REQUEST[$input]) && !validateLenPass($input)) {
-                $errors[] = ['rule' => $rule];
+                $errors[] = $rule;
             }
         }
         if ($rule === 'persianChar') {
             if (isset($_REQUEST[$input]) && !validatePersianChars($_REQUEST[$input])) {
-                $errors[] = ['rule' => $rule];
+                $errors[] = $rule;
             }
         }
     }
@@ -58,15 +63,29 @@ function validatorByRules($rules, $input)
 
 function translate($words, $is_rule = false)
 {
-    $attributes = [
-        'rules' => [
+    if ($is_rule) {
+        $attributes = attributesTranslate('rule');
+        return @$attributes[$words];
+    }
+
+    $attributes = attributesTranslate('input');
+    return @$attributes[$words];
+}
+
+function attributesTranslate($ruleOrInput)
+{
+    if ($ruleOrInput === 'rule') {
+        return [
             'password' => 'کلمه عبور نباید کمتر از 8 کاراکتر باشد!<br>',
             'mobile' => 'شماره تلفن وارد شده نامعتبر است<br>',
             'number' => 'مقدار فیلد باید فقط عدد باشد<br>',
             'required' => 'فیلد نباید خالی باشد!<br>',
             'persianChar' => 'لطفا مقدار فیلد را فارسی بنویسید<br>'
-        ],
-        'inputs' => [
+        ];
+    }
+
+    if ($ruleOrInput === 'input') {
+        return [
             'title' => 'عنوان',
             'username' => 'نام کاربری',
             'cellphone' => 'شماره تلفن همراه',
@@ -75,32 +94,8 @@ function translate($words, $is_rule = false)
             'description' => 'توضیحات',
             'first_name' => 'نام',
             'last_name' => 'نام خانوادگی',
-        ],
-    ];
-
-    if ($is_rule) {
-        if (is_array($words)) {
-            $attributes = $attributes['rules'];
-            $rules = '';
-
-            foreach ($attributes as $key => $value) {
-                foreach ($words as $keyWord => $word) {
-                    if ($key == $word) {
-                        $rules .= translate($keyWord).  ': ' . ' ' . $value ;
-                    }
-                }
-            }
-            return ($rules);
-        }
-        return @$attributes['rules'][$words];
+        ];
     }
-
-    return @$attributes['inputs'][$words];
-}
-
-function errorHandling()
-{
-    
 }
 
 function initErrors()

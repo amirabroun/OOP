@@ -14,7 +14,8 @@ class Request
      * mobile
      * password
      * persianChar
-    */
+     * 
+     */
     protected $rules = [];
 
     public function __construct()
@@ -24,18 +25,15 @@ class Request
         $this->request = (object)REQUEST();
     }
 
-    public function isNotEmptySortErrors($data)
+    public function validateRequest($rules, $returnValue = null)
     {
-        if (isEmpty($data))
-            return false;
+        if (!isEmpty($errors = validator($rules)))
+            sweetAlert(sweetAlertValidatorErrorHandling($errors), 'لطفا خطاهای زیر را برطرف کنید!', 'error');
 
-            dd(1);
-        $errors = [];
-        $data = $data['errors'];
-        foreach ($data as $key => $value) {
-            $errors[$key] = $data[$key][0]['rule'];
-        }
-
-        return $errors;
+        if ($returnValue == 'post')
+            return $this->post;
+        if ($returnValue == 'get')
+            return $this->get;
+        return $this->request;
     }
 }

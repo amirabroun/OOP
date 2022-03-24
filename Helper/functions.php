@@ -134,6 +134,52 @@ function isAjaxRequest(): bool
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 }
 
+/**
+ * @param string $title
+ * @param string $text
+ * @param string $type
+ * @param int $reload
+ *
+ * @return never
+ */
+function sweetAlert($text, $title = null, $type = 'success', $reload = false)
+{
+    responseJson([
+        'data' => '',
+        'status' => ($reload === false) ? 201 : 200,
+        'message' => [
+            'title' => $title,
+            'text' => $text,
+            'type' => $type
+        ]
+    ]);
+}
+/**
+ * @param array $errors
+ *
+ * @return string $rules // this is string ready for sweet alert
+ */
+function sweetAlertValidatorErrorHandling(array $errors)
+{
+    $ruleAttributes = attributesTranslate('rule');
+    $rules = '';
+
+    foreach ($errors as $keyI => $i) {
+        $cleanError = $errors[$keyI];
+
+        foreach ($cleanError as $input => $error) {
+            foreach ($ruleAttributes as $keyRuleAttributes => $rule) {
+
+                if ($keyRuleAttributes == $error) {
+                    $rules .= translate($input) . "\t" . ': ' . ' ' . $rule;
+                }
+            }
+        }
+    }
+
+    return $rules;
+}
+
 // die();
 
 // if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {

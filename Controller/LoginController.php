@@ -11,26 +11,33 @@ class LoginController extends Controller
     public function adminLogin(LoginRequest $request)
     {
         $admin = $request->validate();
-        dd($admin);
-        $this->recaptchaVerify($admin->grecaptcha);
-        
-        $this->successAdminLogin($this->Login($admin->username, $admin->password));
+
+        if (!$this->recaptchaVerify($admin->grecaptcha))
+            sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error');
+
+        if (!$admin = Admin::doLogin($admin->username, $admin->password))
+            $this->failAdminLogin();
+
+        $this->successAdminLogin($admin);
     }
 
-    public function Login($username, $password)
+    public function successAdminLogin(object $admin)
     {
-        if (!$admin = Admin::doLogin($username, $password)) {
-            responseJson([
-                'data' => '',
-                'status' => 201,
-                'message' => [
-                    'title' => 'ورود ناموفق',
-                    'text' => 'اطلاعات وارد شده نامعتبر است!',
-                    'type' => 'error'
-                ]
-            ]);
-        }
+        $_SESSION['_admin_log_'] = [
+            'id' => $admin->id,
+            'first_name' => $admin,
+            'last_name' => $admin->last_name,
+            'full_name' => "{$admin->first_name} {$admin->last_name}",
+        ];
 
-        return $admin;
+        $text = $_SESSION['_admin_log_']['full_name'] . ' عزیز';
+        $title = 'شما با موفقیت وارد شدید!';
+
+        sweetAlert($text, $title, 'success', true);
+    }
+
+    public function failAdminLogin()
+    {
+        sweetAlert('اطلاعات وارد شده نامعتبر است!', 'ورود ناموفق', 'error');
     }
 }
