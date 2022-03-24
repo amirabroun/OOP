@@ -1,11 +1,33 @@
 <?php
 
+function validator(array $fields)
+{
+    $errors = [];
+    foreach ($fields as $key => $field) {
+        $rules = explode('|', $field);
+        $validatorByRules = validatorByRules($rules, $key);
+        if (!empty($validatorByRules)) {
+            $errors[$key] = $validatorByRules;
+        }
+    }
+
+    if (!empty($errors)) {
+        return [
+            'pageName' => pageName(),
+            'errors' => $errors,
+            'title' => 'لطفا خطا های زیر را برطرف کنید: ',
+        ];
+    }
+
+    return true;
+}
+
 function validatorByRules($rules, $input)
 {
     $errors = [];
     foreach ($rules as $rule) {
         if ($rule === 'required') {
-            if (!isset($_REQUEST[$input])) {
+            if (isEmpty($_REQUEST[$input])) {
                 $errors[] = ['rule' => $rule];
             }
             continue;
@@ -34,18 +56,19 @@ function validatorByRules($rules, $input)
     return $errors;
 }
 
-function translate($word, $is_rule = false)
+function translate($words, $is_rule = false)
 {
     $attributes = [
         'rules' => [
-            'password' => 'کلمه عبور نباید کمتر از 8 کاراکتر باشد!',
-            'mobile' => 'شماره تلفن وارد شده نامعتبر است!',
-            'number' => 'مقدار فیلد باید فقط عدد باشد!',
-            'required' => 'فیلد نباید خالی باشد!',
-            'persianChar' => 'لطفا مقدار فیلد را فارسی بنویسید!'
+            'password' => 'کلمه عبور نباید کمتر از 8 کاراکتر باشد!<br>',
+            'mobile' => 'شماره تلفن وارد شده نامعتبر است<br>',
+            'number' => 'مقدار فیلد باید فقط عدد باشد<br>',
+            'required' => 'فیلد نباید خالی باشد!<br>',
+            'persianChar' => 'لطفا مقدار فیلد را فارسی بنویسید<br>'
         ],
         'inputs' => [
             'title' => 'عنوان',
+            'username' => 'نام کاربری',
             'cellphone' => 'شماره تلفن همراه',
             'password' => 'کلمه عبور',
             'password_rule' => 'کلمه عبور',
@@ -54,30 +77,30 @@ function translate($word, $is_rule = false)
             'last_name' => 'نام خانوادگی',
         ],
     ];
+
     if ($is_rule) {
-        return @$attributes['rules'][$word];
+        if (is_array($words)) {
+            $attributes = $attributes['rules'];
+            $rules = '';
+
+            foreach ($attributes as $key => $value) {
+                foreach ($words as $keyWord => $word) {
+                    if ($key == $word) {
+                        $rules .= translate($keyWord).  ': ' . ' ' . $value ;
+                    }
+                }
+            }
+            return ($rules);
+        }
+        return @$attributes['rules'][$words];
     }
-    return @$attributes['inputs'][$word];
+
+    return @$attributes['inputs'][$words];
 }
 
-function validator(array $fields)
+function errorHandling()
 {
-    $errors = [];
-    foreach ($fields as $key => $field) {
-        $rules = explode('|', $field);
-        $validatorByRules = validatorByRules($rules, $key);
-        if (!empty($validatorByRules)) {
-            $errors[$key] = $validatorByRules;
-        }
-    }
-    if (!empty($errors)) {
-        $_SESSION['error'][pageName()] = [
-            'errors' => $errors,
-            'title' => 'لطفا خطا های زیر را برطرف کنید: ',
-        ];
-        return ['status' => false];
-    }
-    return ['status' => true];
+    
 }
 
 function initErrors()

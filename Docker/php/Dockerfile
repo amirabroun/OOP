@@ -8,7 +8,6 @@ RUN apt-get update --fix-missing \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN pecl install xdebug \
+RUN docker-php-ext-install pdo pdo_mysql \
+    && pecl install xdebug \
     && docker-php-ext-enable xdebug
-
-RUN apt-get update --fix-missing 

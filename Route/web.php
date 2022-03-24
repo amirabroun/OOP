@@ -5,7 +5,7 @@ use Controllers\LoginController;
 use Requests\LoginRequest;
 
 if (checkAction("admin_login")) {
-    LoginController::adminLogin(new LoginRequest);
+    (new LoginController)->adminLogin(new LoginRequest);
 }
 
 if (checkAction("log-out")) {

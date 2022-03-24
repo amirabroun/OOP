@@ -8,24 +8,18 @@ use Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public static function adminLogin(LoginRequest $request)
+    public function adminLogin(LoginRequest $request)
     {
-        dd($request->post->username);
-        $request->validate();
+        $admin = $request->validate();
+        dd($admin);
+        $this->recaptchaVerify($admin->grecaptcha);
         
-        if (!recaptchaVerify(Config::SECRET_KEY, POST('grecaptcha'))) {
-            responseJson([
-                'data' => '',
-                'status' => 201,
-                'message' => [
-                    'title' => 'ورود ناموفق',
-                    'text' => 'لطفا ثابت کنید که ربات نیستید!',
-                    'type' => 'error'
-                ]
-            ]);
-        }
+        $this->successAdminLogin($this->Login($admin->username, $admin->password));
+    }
 
-        if (!$admin_login = Admin::doLogin('','')) {
+    public function Login($username, $password)
+    {
+        if (!$admin = Admin::doLogin($username, $password)) {
             responseJson([
                 'data' => '',
                 'status' => 201,
@@ -37,21 +31,6 @@ class LoginController extends Controller
             ]);
         }
 
-        $_SESSION['_admin_log_'] = [
-            'id' => $admin_login->id,
-            'first_name' => $admin_login,
-            'last_name' => $admin_login->last_name,
-            'full_name' => "{$admin_login->first_name} {$admin_login->last_name}",
-        ];
-
-        responseJson([
-            'data' => '',
-            'status' => 200,
-            'message' => [
-                'title' => $_SESSION['_admin_log_']['full_name'] . ' عزیز',
-                'text' => 'شما با موفقیت وارد شدید!',
-                'type' => 'success'
-            ]
-        ]);
+        return $admin;
     }
 }
