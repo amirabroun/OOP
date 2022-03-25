@@ -1,3 +1,5 @@
+<?php include "Views/partials/header.php";
+include "Views/partials/aside.php"; ?>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px;">
     <div class="d-flex flex-column-fluid">
         <div class="container">
@@ -10,7 +12,7 @@
                         <h3 class="card-label">مدیریت کاربران</h3>
                     </div>
                 </div>
-                <?php $users = getUsers(); ?>
+                <?php $users = Models\User::getUsers(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_users" style="margin-top: 13px;text-align: center">
                         <thead>
@@ -64,3 +66,4 @@
         </div>
     </div>
 </div>
+<?php include "Views/partials/footer.php"; ?>

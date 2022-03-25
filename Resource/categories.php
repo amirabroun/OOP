@@ -1,3 +1,5 @@
+<?php include "Views/partials/header.php";
+include "Views/partials/aside.php"; ?>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px;">
     <div class="d-flex flex-column-fluid">
         <div class="container">
@@ -171,3 +173,4 @@
         </div>
     </div>
 </div>
+<?php include "Views/partials/footer.php"; ?>

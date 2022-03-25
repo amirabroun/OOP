@@ -27,12 +27,12 @@ function sanitiseNumber($data)
 
 function url($path = '')
 {
-    return ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/' . ltrim($path, '/');
 }
 
 function assets($path = '')
 {
-    return '/Assets/' . ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/Assets/' . ltrim($path, '/');
 }
 
 function setTitle()

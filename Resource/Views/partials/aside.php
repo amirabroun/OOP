@@ -55,7 +55,7 @@
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="<?php echo url('manage-categories.php') ?>" class="menu-link menu-toggle">
+                                <a href="<?php echo url('/categories') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -63,7 +63,7 @@
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="<?php echo url('manage-brands.php') ?>" class="menu-link menu-toggle">
+                                <a href="<?php echo url('/brands') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -71,7 +71,7 @@
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="<?php echo url('test.php') ?>" class="menu-link menu-toggle">
+                                <a href="<?php echo url('/test') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
@@ -90,7 +90,7 @@
                     </div>
                 </li>
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="<?php echo url('manage-products.php') ?>" class="menu-link menu-toggle">
+                    <a href="<?php echo url('products') ?>" class="menu-link menu-toggle">
                         <i class="menu-bullet menu-bullet-line">
                             <span></span>
                         </i>
@@ -119,7 +119,7 @@
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="/manage-users.php" class="menu-link menu-toggle">
+                                <a href="<?php echo url('users') ?>" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
