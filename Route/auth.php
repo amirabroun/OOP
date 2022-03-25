@@ -1,6 +1,6 @@
 <?php require __DIR__ . "/../vendor/autoload.php";
 
-use Config\Config;
+use App\Config\Config;
 
 if (empty($_SESSION))
     session_start();

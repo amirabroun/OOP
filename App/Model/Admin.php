@@ -1,10 +1,7 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use DataBase\DataBase;
-use Helper\Helper;
-use PDO;
 
 class Admin extends Model
 {

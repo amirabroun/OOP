@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use DataBase\DataBase;
+use App\DataBase\DataBase;
 use PDO;
 
 class Product extends Model

@@ -1,4 +1,4 @@
-<?php $admin =  Models\Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
+<?php $admin =  App\Models\Admin::getAdmin($_SESSION['_admin_log_']['id']); ?>
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <div class="brand flex-column-auto" id="kt_brand">
         <a href="index.html" class="brand-logo">

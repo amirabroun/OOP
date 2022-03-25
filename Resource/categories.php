@@ -21,7 +21,7 @@ include "Views/partials/aside.php"; ?>
                                     <label>عنوان:</label>
                                     <input type="text" name="title" class="form-control" placeholder="عنوان دسته بندی را وارد کنید..." />
                                 </div>
-                                <?php $category_parents = Models\Category::getCategoryParents(); ?>
+                                <?php $category_parents = App\Models\Category::getCategoryParents(); ?>
                                 <div <?php echo (!$category_parents) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>دسته والد:</label>
                                     <select name="parent" title="دسته والد" class="form-control selectpicker" data-size="7" data-live-search="true">
@@ -64,7 +64,7 @@ include "Views/partials/aside.php"; ?>
                         <h3 class="card-label">مدیریت دسته بندی ها</h3>
                     </div>
                 </div>
-                <?php $categories = Models\Category::getCategories(); ?>
+                <?php $categories = App\Models\Category::getCategories(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_categories" style="margin-top: 13px;text-align: center">
                         <thead>
@@ -141,7 +141,7 @@ include "Views/partials/aside.php"; ?>
                             <label>عنوان:</label>
                             <input type="text" name="title" class="form-control" placeholder="عنوان دسته بندی را وارد کنید..." />
                         </div>
-                        <?php $category_parents = Models\Category::getCategoryParents(); ?>
+                        <?php $category_parents = App\Models\Category::getCategoryParents(); ?>
                         <div <?php echo (!$category_parents) ? 'hidden' : null ?> class="col-lg-6">
                             <label>دسته والد:</label>
                             <select name="parent" title="دسته والد" class="form-control selectpicker" data-size="7" data-live-search="true">

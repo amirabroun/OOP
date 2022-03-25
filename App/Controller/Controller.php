@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Config\Config;
+use App\Config\Config;
 
 class Controller
 {

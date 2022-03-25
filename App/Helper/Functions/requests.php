@@ -1,7 +1,7 @@
 <?php
 
 
-use Config\Config;
+use App\Config\Config;
 
 
 function POST($key = 'all-$_POST')

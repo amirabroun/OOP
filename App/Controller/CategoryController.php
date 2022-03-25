@@ -1,8 +1,8 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Models\Category as ModelsCategory;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -11,7 +11,7 @@ class CategoryController extends Controller
         if (!validator(['title', 'description', 'parent']))
             back();
 
-        if (!ModelsCategory::createCategory(POST('parent'), POST('title'), POST('description'))) {
+        if (!Category::createCategory(POST('parent'), POST('title'), POST('description'))) {
             $_SESSION['message'] = [
                 'title' => 'عملیات ناموفق',
                 'type' => 'error',
@@ -33,7 +33,7 @@ class CategoryController extends Controller
         if (!validator(['title', 'description', 'parent']))
             back();
 
-        if (!ModelsCategory::updateCategory(POST('id'), POST('parent'), POST('title'), POST('description'))) {
+        if (!Category::updateCategory(POST('id'), POST('parent'), POST('title'), POST('description'))) {
             responseJson([
                 'status' => 201,
                 'message' => [

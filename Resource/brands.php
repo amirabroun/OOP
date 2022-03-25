@@ -66,7 +66,7 @@ include "Views/partials/aside.php"; ?>
                         </thead>
 
                         <tbody>
-                            <?php $brands = Models\Brand::getBrands();
+                            <?php $brands = App\Models\Brand::getBrands();
                             if ($brands) {
                                 foreach ($brands as $key => $brand) {
                             ?>

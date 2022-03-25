@@ -1,9 +1,9 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use DataBase\DataBase;
-use Config\Config;
+use App\DataBase\DataBase;
+use App\Config\Config;
 use PDO;
 
 class Model extends DataBase

@@ -12,7 +12,7 @@ include "Views/partials/aside.php"; ?>
                         <h3 class="card-label">مدیریت کاربران</h3>
                     </div>
                 </div>
-                <?php $users = Models\User::getUsers(); ?>
+                <?php $users = App\Models\User::getUsers(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_users" style="margin-top: 13px;text-align: center">
                         <thead>

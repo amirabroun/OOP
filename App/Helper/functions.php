@@ -1,7 +1,7 @@
 <?php
 
 
-use Config\Config;
+use App\Config\Config;
 
 require 'Functions/requests.php';
 require 'Functions/validations.php';
@@ -32,7 +32,7 @@ function url($path = '')
 
 function assets($path = '')
 {
-    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/Assets/' . ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/Resource/Assets/' . ltrim($path, '/');
 }
 
 function setTitle()

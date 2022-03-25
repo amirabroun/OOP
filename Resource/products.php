@@ -22,7 +22,7 @@ include "Views/partials/aside.php"; ?>
                                     <label>عنوان:</label>
                                     <input type="text" name="title" class="form-control" placeholder="عنوان محصول را وارد کنید...">
                                 </div>
-                                <?php $categories = Models\Category::getCategories(); ?>
+                                <?php $categories = App\Models\Category::getCategories(); ?>
                                 <div <?php echo (!$categories) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>دسته بندی:</label>
                                     <select multiple name="category[]" title="دسته بندی را انتخاب کنید..." class="form-control selectpicker" data-size="7" data-live-search="true">
@@ -49,7 +49,7 @@ include "Views/partials/aside.php"; ?>
                                     <label>تعداد:</label>
                                     <input type="number" name="stock" class="form-control" value="1" placeholder="اعداد را لاتین وارد کنید...">
                                 </div>
-                                <?php $brands = Models\Brand::getBrands(); ?>
+                                <?php $brands = App\Models\Brand::getBrands(); ?>
                                 <div <?php echo (!$brands) ? 'hidden' : null ?> class="col-lg-6">
                                     <label>برند:</label>
                                     <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
@@ -92,7 +92,7 @@ include "Views/partials/aside.php"; ?>
                         <h3 class="card-label">نمایش محصولات</h3>
                     </div>
                 </div>
-                <?php $products = Models\Product::getProducts(); ?>
+                <?php $products = App\Models\Product::getProducts(); ?>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-checkable" id="datatable_products" style="margin-top: 13px;text-align: center">
                         <thead>
@@ -262,7 +262,7 @@ include "Views/partials/aside.php"; ?>
                             <label>عنوان:</label>
                             <input type="text" name="title" class="form-control" placeholder="عنوان محصول را وارد کنید..." />
                         </div>
-                        <?php $brands = Models\Brand::getBrands() ?>
+                        <?php $brands = App\Models\Brand::getBrands() ?>
                         <div <?php echo (!$brands) ? 'hidden' : null ?> class="col-lg-6">
                             <label>انتخاب برند</label>
                             <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">

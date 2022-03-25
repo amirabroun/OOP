@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo Config\Config::APP_TITLE ?></title>
+    <title><?php echo App\Config\Config::APP_TITLE ?></title>
     <meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="<?php echo assets('/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />

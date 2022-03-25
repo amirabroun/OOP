@@ -1,10 +1,10 @@
 <?php
 
-namespace Controllers;
+namespace App\Controllers;
 
-use Config\Config;
-use Models\Photo;
-use Models\Product;
+use App\Config\Config;
+use App\Models\Photo;
+use App\Models\Product;
 
 class ProductController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php require __DIR__ . "/../vendor/autoload.php";
 
-use Config\Config;
-use Controllers\LoginController;
-use Requests\LoginRequest;
+use App\Config\Config;
+use App\Controllers\LoginController;
+use App\Requests\LoginRequest;
 use Router\Route;
 
 if (checkAction("admin_login")) {

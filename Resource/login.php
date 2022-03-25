@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo Config\Config::APP_TITLE ?> | ورود مدیران</title>
+    <title><?php echo App\Config\Config::APP_TITLE ?> | ورود مدیران</title>
     <meta name="description" content="Login page example" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="<?php echo assets('/css/pages/login/login-2.css'); ?>" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
                                     <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" type="password" name="password" autocomplete="off" />
                                 </div>
                                 <div class="text-center pb-0">
-                                    <div class="g-recaptcha text-center" data-sitekey="<?php echo Config\Config::SITE_KEY; ?>"></div>
+                                    <div class="g-recaptcha text-center" data-sitekey="<?php echo App\Config\Config::SITE_KEY; ?>"></div>
                                 </div>
                                 <div class="text-center pt-2">
                                     <button id="signin_submit" class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-3 my-3">ورود</button>

@@ -1,9 +1,8 @@
 <?php
 
-namespace DataBase;
+namespace App\DataBase;
 
-use Config\Config;
-use Helper\Helper;
+use App\Config\Config;
 use PDOException;
 use PDO;
 

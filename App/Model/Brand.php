@@ -1,9 +1,7 @@
 <?php
 
-namespace Models;
+namespace App\Models;
 
-use PDO;
-use Models\Admin;
 
 class Brand extends Model
 {
