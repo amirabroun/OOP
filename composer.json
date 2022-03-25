@@ -9,7 +9,7 @@
         "classmap": [
             "App/Config/",
             "App/Database/",
-            "Route/Router/"
+            "App/Router/"
         ],
         "files": [
             "App/Helper/functions.php",
@@ -23,5 +23,7 @@
             "email": "abroon234@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phroute/phroute": "^2.1"
+    }
 }
