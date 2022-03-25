@@ -27,7 +27,7 @@ function REQUEST($key = 'all-$_REQUEST')
     if ($key == 'all-$_REQUEST') {
         return $_REQUEST;
     }
-    
+
     return $_REQUEST[$key] ?? null;
 }
 
@@ -60,6 +60,11 @@ function adminBaseUrl()
 function pageName()
 {
     return ltrim(str_replace('.php', '', $_SERVER['SCRIPT_NAME']), '/');
+}
+
+function uri()
+{
+    return ltrim(str_replace('.php', '', $_SERVER['REQUEST_URI']), '/');
 }
 
 function checkAction($action)

@@ -1,4 +1,3 @@
-<?php require __DIR__ . "/vendor/autoload.php"; ?>
 <html lang="fa" direction="rtl" dir="rtl" style="direction: rtl">
 
 <head>

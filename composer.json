@@ -8,13 +8,13 @@
         },
         "classmap": [
             "Config/",
-            "Database/",
-            "Route/Router/"
+            "Database/"
         ],
         "files": [
             "Helper/functions.php",
             "Route/auth.php",
-            "Route/web.php"
+            "Route/web.php",
+            "Route/Router/router.php"
         ]
     },
     "authors": [

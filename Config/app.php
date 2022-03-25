@@ -20,9 +20,11 @@ class Config
     public const IGNORE_AUTH_PAGE = [
         'test',
         'login',
+        'Resource/login',
         'requests/login',
         'requests/order',
         'Route/web',
         'Route/auth',
+        'login/secret/e10adc3949ba59abbe56e057f20f883e'
     ];
 }

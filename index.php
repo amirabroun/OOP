@@ -1,9 +1,8 @@
-<?php
+<?php require __DIR__ . "/vendor/autoload.php";
 
-include "Views/partials/header.php";
+use Config\Config;
 
-include "Views/partials/aside.php";
+any('/test', '/Resource/test.php');
+any('/', '/Resource/index.php');
 
-include "Views/contents/index_content.php";
-
-include "Views/partials/footer.php";
+any('/login/secret/' . md5(Config::SECRET_LOGIN), '/Resource/login.php');
