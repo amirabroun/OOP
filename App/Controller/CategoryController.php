@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Category;
+use App\Controllers\Controller;
 
 class CategoryController extends Controller
 {

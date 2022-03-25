@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config\Config;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Controllers\Controller;
 
 class ProductController extends Controller
 {

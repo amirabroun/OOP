@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config\Config;
 use App\Models\Admin;
 use App\Requests\LoginRequest;
+use App\Controllers\Controller;
 
 class LoginController extends Controller
 {

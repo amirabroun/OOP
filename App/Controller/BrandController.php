@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use Controllers\Controller;
-use Models\Brand;
+use App\Controllers\Controller;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
