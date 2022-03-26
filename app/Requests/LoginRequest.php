@@ -4,9 +4,9 @@ namespace App\Requests;
 
 class LoginRequest extends Request
 {
-    protected $rules = [
-        'username' => 'required',
-        'password' => 'required|password'
+    protected array $rules = [
+        // 'username' => 'required',
+        // 'password' => 'required|password'
     ];
 
     public function validate()

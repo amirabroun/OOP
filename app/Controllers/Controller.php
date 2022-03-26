@@ -8,6 +8,6 @@ class Controller
 {
     public function recaptchaVerify($grecaptchaToken)
     {
-        return recaptchaVerify(Config::SECRET_KEY, $grecaptchaToken);
+        return recaptchaVerify(secretKey('secret_recaptcha_key'), $grecaptchaToken);
     }
 }

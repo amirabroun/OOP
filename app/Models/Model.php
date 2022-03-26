@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use App\DataBase\DataBase;
-use App\Config\Config;
 use PDO;
+use PDOStatement;
 
-class Model extends DataBase
+class Model
 {
-    private $sql;
+    private PDOStatement $sql;
     private PDO $action;
 
     public function __construct($sql)
     {
-        $this->sql = $this->prepareSQL($sql);
+        $this->sql = self::prepareSQL($sql);
     }
 
     public static function prepareSQL($sql)

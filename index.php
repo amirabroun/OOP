@@ -1,2 +1,2 @@
 <?php require __DIR__ . "/vendor/autoload.php";
-require __DIR__ . "/Route/route.php"; 
+require __DIR__ . "/routes/route.php"; 

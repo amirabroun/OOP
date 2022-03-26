@@ -4,9 +4,9 @@ namespace App\Requests;
 
 class Request
 {
-    public $post;
-    public $get;
-    public $request;
+    public object $post;
+    public object $get;
+    public object $request;
 
     /*
      * required
@@ -16,7 +16,7 @@ class Request
      * persianChar
      * 
      */
-    protected $rules = [];
+    protected array $rules = [];
 
     public function __construct()
     {

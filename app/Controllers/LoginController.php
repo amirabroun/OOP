@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Config\Config;
 use App\Models\Admin;
 use App\Requests\LoginRequest;
 use App\Controllers\Controller;
@@ -14,7 +13,7 @@ class LoginController extends Controller
         $admin = $request->validate();
 
         if (!$this->recaptchaVerify($admin->grecaptcha))
-            sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error', true);
+            sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error');
 
         if (!$admin = Admin::doLogin($admin->username, $admin->password))
             $this->failAdminLogin();

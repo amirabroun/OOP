@@ -1,10 +1,10 @@
 <?php
 
 
-use App\Config\Config;
 
 require 'Functions/requests.php';
 require 'Functions/validations.php';
+require 'Functions/app.php';
 
 ini_set('xdebug.var_display_max_depth', 10);
 ini_set('xdebug.var_display_max_children', 256);
@@ -32,7 +32,7 @@ function url($path = '')
 
 function assets($path = '')
 {
-    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/Resource/Assets/' . ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/' . ltrim($path, '/');
 }
 
 function setTitle()
@@ -40,9 +40,9 @@ function setTitle()
     $page = str_replace(['/', '.php'], '', $_SERVER['SCRIPT_NAME']);
     switch ($page) {
         case 'product':
-            return Config::APP_TITLE . 'لیست محصولات | ';
+            return appTitle() . 'لیست محصولات | ';
         default:
-            return Config::APP_TITLE;
+            return appTitle();
     }
 }
 
@@ -58,12 +58,21 @@ function productLink($slug)
 
 function dd(...$data)
 {
-    die(var_dump($data));
+    die(var_dump([
+        $data,
+        'page name' => pageName(),
+        'uri' => uri(),
+    ]));
 }
 
 function ddd(...$data)
 {
-    die(json_encode($data));
+    die(json_encode([
+        $data,
+        'page name' => pageName(),
+        'uri' => uri(),
+        'url' => url(),
+    ]));
 }
 
 function bcrypt($password, $hash = null)

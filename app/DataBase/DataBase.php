@@ -2,13 +2,12 @@
 
 namespace App\DataBase;
 
-use App\Config\Config;
 use PDOException;
 use PDO;
 
-class DataBase extends Config
+class DataBase
 {
-    public $cn;
+    public PDO $cn;
 
     public function __construct()
     {

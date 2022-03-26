@@ -2,19 +2,12 @@
     "name": "amirabroun/admin",
     "autoload": {
         "psr-4": {
-            "App\\Controllers\\": "App/Controller/",
-            "App\\Requests\\": "App/Request/",
-            "App\\Models\\": "App/Model/"
+            "App\\": "app/"
         },
-        "classmap": [
-            "App/Config/",
-            "App/Database/",
-            "App/Router/"
-        ],
         "files": [
-            "App/Helper/functions.php",
-            "Route/auth.php",
-            "Route/web.php"
+            "app/Helpers/functions.php",
+            "routes/auth.php",
+            "routes/web.php"
         ]
     },
     "authors": [

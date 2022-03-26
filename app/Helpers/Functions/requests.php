@@ -1,9 +1,5 @@
 <?php
 
-
-use App\Config\Config;
-
-
 function POST($key = 'all-$_POST')
 {
     if ($key == 'all-$_POST') {
@@ -49,7 +45,7 @@ function originBaseUrl()
 
 function publicBaseUrl($path = '')
 {
-    return $_SERVER['REQUEST_SCHEME'] . '://' . Config::PUBLIC_DOMAIN . '/' . ltrim($path, '/');
+    return $_SERVER['REQUEST_SCHEME'] . '://' . domain('public') . '/' . ltrim($path, '/');
 }
 
 function adminBaseUrl()

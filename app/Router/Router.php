@@ -1,8 +1,8 @@
 <?php
 
-namespace Route\Router;
+namespace App\Router;
 
-class Route
+class Router
 {
     public static function get($route, $path_to_include)
     {
