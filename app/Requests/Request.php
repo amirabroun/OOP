@@ -8,13 +8,12 @@ class Request
     public object $get;
     public object $request;
 
-    /*
-     * required
-     * number
-     * mobile
-     * password
-     * persianChar
-     * 
+    /**
+     * @var array required
+     * @var array number
+     * @var array mobile
+     * @var array password
+     * @var array persianChar
      */
     protected array $rules = [];
 
@@ -30,10 +29,12 @@ class Request
         if (!isEmpty($errors = validator($rules)))
             sweetAlert(sweetAlertValidatorErrorHandling($errors), 'لطفا خطاهای زیر را برطرف کنید!', 'error');
 
-        if ($returnValue == 'post')
+        if ($returnValue == 'post') {
             return $this->post;
-        if ($returnValue == 'get')
+        }
+        if ($returnValue == 'get') {
             return $this->get;
+        }
         return $this->request;
     }
 }

@@ -10,7 +10,7 @@ class Admin extends Model
         $action = new Model("SELECT * From admins where username = ? LIMIT 1");
         $action->execute($username);
 
-        if (!$action->rowCount() > 0)
+        if (!($action->rowCount() > 0))
             return false;
 
         $admin = $action->fetchObject();
@@ -26,7 +26,7 @@ class Admin extends Model
 
         $action->execute($id);
 
-        if (!$action->rowCount() > 0) {
+        if (!($action->rowCount() > 0)) {
             return false;
         }
 

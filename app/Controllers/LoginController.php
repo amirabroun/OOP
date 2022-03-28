@@ -13,7 +13,7 @@ class LoginController extends Controller
         $admin = $request->validate();
 
         if (!$this->recaptchaVerify($admin->grecaptcha))
-            sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error');
+            $this->failRecaptchaVerify();
 
         if (!$admin = Admin::doLogin($admin->username, $admin->password))
             $this->failAdminLogin();
@@ -39,5 +39,10 @@ class LoginController extends Controller
     public function failAdminLogin()
     {
         sweetAlert('اطلاعات وارد شده نامعتبر است!', 'ورود ناموفق', 'error');
+    }
+
+    public function failRecaptchaVerify()
+    {
+        sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error');
     }
 }

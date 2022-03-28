@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @param string $key
+ *
+ * @return string admin
+ * @return string public
+ * @return string origin
+ * @return array all_domain
+ */
 function domain($key = null)
 {
     $domain = [
@@ -14,6 +22,14 @@ function domain($key = null)
     return $domain;
 }
 
+/**
+ * @param string $key
+ *
+ * @return string secret_login
+ * @return string secret_recaptcha_key
+ * @return string site_recaptcha_key
+ * @return string all_secret
+ */
 function secretKey($key = null)
 {
     $secret = [
@@ -28,11 +44,24 @@ function secretKey($key = null)
     return $secret;
 }
 
+/**
+ * @return string app_title
+ */
 function appTitle()
 {
     return getenv('APP_TITLE');
 }
 
+/**
+ * @return array test
+ * @return array login
+ * @return array Resource/login
+ * @return array requests/login
+ * @return array requests/order
+ * @return array routes/web
+ * @return array routes/auth
+ * @return array login/secret/e10adc3949ba59abbe56e057f20f883e
+ */
 function ignoreAuthPage()
 {
     return [
@@ -41,9 +70,9 @@ function ignoreAuthPage()
         'Resource/login',
         'requests/login',
         'requests/order',
-        'Route/web',
-        'Route/auth',
+        'routes/web',
+        'routes/auth',
         'login/secret/e10adc3949ba59abbe56e057f20f883e',
-        getenv('IGNORE_FILE_AUTH'),
+        // getenv('IGNORE_FILE_AUTH'),
     ];
 }

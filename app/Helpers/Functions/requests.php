@@ -2,7 +2,7 @@
 
 function POST($key = 'all-$_POST')
 {
-    if ($key == 'all-$_POST') {
+    if ($key === 'all-$_POST') {
         return $_POST;
     }
 
@@ -11,7 +11,7 @@ function POST($key = 'all-$_POST')
 
 function GET($key = 'all-$_GET')
 {
-    if ($key == 'all-$_GET') {
+    if ($key === 'all-$_GET') {
         return $_GET;
     }
 
@@ -20,7 +20,7 @@ function GET($key = 'all-$_GET')
 
 function REQUEST($key = 'all-$_REQUEST')
 {
-    if ($key == 'all-$_REQUEST') {
+    if ($key === 'all-$_REQUEST') {
         return $_REQUEST;
     }
 
