@@ -2,13 +2,16 @@
 
 namespace App\Requests;
 
-class LoginRequest extends Request
+class ProductRequest extends Request
 {
     protected array $rules = [
-        'username' => 'required',
-        'password' => 'required|password'
+        'title' => 'required',
+        'brand_id' => '',
+        'price' => 'required|number',
+        'price_discounted' => 'number',
+        'description' => 'required',
     ];
-
+    
     public function validate(array $rules = null, string $returnValue = 'post')
     {
         if (isNotEmpty($rules))

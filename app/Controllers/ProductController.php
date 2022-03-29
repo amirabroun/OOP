@@ -6,44 +6,31 @@ use App\Config\Config;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Controllers\Controller;
+use App\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-    public static function createProduct()
+    public static function createProduct(ProductRequest $request)
     {
-        $validator = validator([
-            'id' => 'required|number',
-            'title' => 'required',
-            'price' => 'required|number',
-            'brand' => 'required',
-        ]);
+        $product = $request->validate();
 
-        if (!$validator)
-            back();
+        $createProduct = Product::createProduct(
+            $product->title,
+            convertNumberToEnglish($product->price),
+            convertNumberToEnglish($product->price_discounted),
+            $product->stock,
+            $product->brand,
+            $product->description
+        );
 
-        $createProduct = Product::createProduct(POST('title'), convertNumberToEnglish(POST('price')), convertNumberToEnglish(POST('price_discounted')), POST('stock'), POST('brand'), POST('description'));
+        if (!$createProduct)
+            self::failAction();
 
-        if (!$createProduct) {
-            $_SESSION['message'] = [
-                'title' => 'عملیات ناموفق',
-                'type' => 'error',
-                'text' => 'عملیات با خطا مواجه شد!!',
-            ];
-
-            back();
-        }
-        
-        foreach (POST('category') as $item) {
+        foreach ($product->category as $item)
             Product::createCategoryProduct($item, $createProduct);
-        }
 
-        $_SESSION['message'] = [
-            'title' => 'عملیات موفق',
-            'type' => 'success',
-            'text' => 'محصول با موفقیت ایجاد شد!',
-        ];
 
-        back();
+        self::successCreateAction();
     }
 
     public static function uploadPictureProduct()
@@ -85,7 +72,7 @@ class ProductController extends Controller
             $suffix = pathinfo($file['name'], PATHINFO_EXTENSION);
             $new_name = md5($original_name . microtime()) . '.' . $suffix;
             $path = '/images/products/';
-            $full_path = rtrim(Config::PUBLIC_DOMAIN_ROOT, '/') . $path . $new_name;
+            $full_path = rtrim(domain('public'), '/') . $path . $new_name;
 
             if (@move_uploaded_file($file['tmp_name'], $full_path)) {
                 $createPhoto = Photo::createPhoto($new_name, $path);
@@ -116,36 +103,53 @@ class ProductController extends Controller
         ]);
     }
 
-    public static function updateProduct()
+    public static function updateProduct(ProductRequest $request)
     {
-        $validator = validator([
-            'id' => 'required|number',
+        $product = $request->validate([
             'title' => 'required',
-            'brand_id' => 'required|number',
+            'brand_id' => '',
             'description' => 'required',
         ]);
 
-        if (!$validator)
-            back();
+        $updateProduct = Product::updateProduct(
+            $product->id,
+            $product->brand_id,
+            $product->title,
+            $product->description
+        );
 
-        if (!Product::updateProduct(POST('id'), POST('brand_id'), POST('title'), POST('description'))) {
-            responseJson([
-                'status' => 201,
-                'message' => [
-                    'title' => 'عملیات ناموفق',
-                    'text' => 'عملیات با خطا مواجه شد!',
-                    'type' => 'error',
-                ],
-            ]);
-        }
+        if (!$updateProduct)
+            self::failAction();
 
-        responseJson([
-            'status' => 200,
-            'message' => [
-                'title' => 'عملیات موفق',
-                'text' => 'محصول با موفقیت ویرایش شد!',
-                'type' => 'success',
-            ],
-        ]);
+        self::successUpdateAction();
+    }
+
+    public static function failAction()
+    {
+        sweetAlert(
+            'عملیات با خطا مواجه شد!',
+            'عملیات ناموفق',
+            'error'
+        );
+    }
+
+    public static function successUpdateAction()
+    {
+        sweetAlert(
+            'محصول با موفقیت ویرایش شد!',
+            'عملیات موفق',
+            'success',
+            true
+        );
+    }
+
+    public static function successCreateAction()
+    {
+        sweetAlert(
+            'محصول با موفقیت ایجاد شد!',
+            'عملیات موفق',
+            'success',
+            true
+        );
     }
 }

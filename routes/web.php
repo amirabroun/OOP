@@ -1,12 +1,14 @@
 <?php require __DIR__ . "/../vendor/autoload.php";
 
 use App\Controllers\LoginController;
+use App\Controllers\ProductController;
 use App\Requests\LoginRequest;
+use App\Requests\ProductRequest;
 use Router\Route;
 
-if (checkAction("admin_login")) {
-    (new LoginController)->adminLogin(new LoginRequest);
-}
+if (checkAction("admin_login")) LoginController::adminLogin(new LoginRequest);
+if (checkAction("update_product")) ProductController::updateProduct(new ProductRequest);
+if (checkAction("create_product")) ProductController::createProduct(new ProductRequest);
 
 if (checkAction("log-out")) {
     if (isset($_SESSION['_admin_log_'])) {

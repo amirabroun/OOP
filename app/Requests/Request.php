@@ -24,7 +24,7 @@ class Request
         $this->request = (object)REQUEST();
     }
 
-    public function validateRequest($rules, $returnValue = null)
+    public function validateRequest(array $rules, $returnValue = null)
     {
         if (!isEmpty($errors = validator($rules)))
             sweetAlert(sweetAlertValidatorErrorHandling($errors), 'لطفا خطاهای زیر را برطرف کنید!', 'error');

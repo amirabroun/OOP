@@ -87,6 +87,8 @@ function attributesTranslate($ruleOrInput)
     if ($ruleOrInput === 'input') {
         return [
             'title' => 'عنوان',
+            'id' => 'آیدی',
+            'brand_id' => 'برند',
             'username' => 'نام کاربری',
             'cellphone' => 'شماره تلفن همراه',
             'password' => 'کلمه عبور',
@@ -132,6 +134,11 @@ function initErrors()
 function isEmpty($data): bool
 {
     return ($data === '' || $data === null || (is_array($data) && !$data));
+}
+
+function isNotEmpty($data): bool
+{
+    return !isEmpty($data);
 }
 
 function convertNumberToEnglish($data)

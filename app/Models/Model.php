@@ -8,6 +8,8 @@ use PDOStatement;
 
 class Model
 {
+    protected array $fillable = [];
+    
     private PDOStatement $sql;
     private PDO $action;
 

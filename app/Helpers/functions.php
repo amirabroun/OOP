@@ -1,7 +1,5 @@
 <?php
 
-
-
 require 'Functions/requests.php';
 require 'Functions/validations.php';
 require 'Functions/app.php';
@@ -71,7 +69,6 @@ function ddd(...$data)
         $data,
         'page name' => pageName(),
         'uri' => uri(),
-        'url' => url(),
     ]));
 }
 
@@ -163,6 +160,7 @@ function sweetAlert($text, $title = null, $type = 'success', $reload = false)
         ]
     ]);
 }
+
 /**
  * @param array $errors
  *
@@ -188,14 +186,3 @@ function sweetAlertValidatorErrorHandling(array $errors)
 
     return $rules;
 }
-
-// die();
-
-// if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-//     $path = '../';
-// }
-
-// require_once @$path . 'functions/requests.php';
-
-// require_once @$path . 'functions/others.php';
-// require_once @$path . 'functions/validations.php';

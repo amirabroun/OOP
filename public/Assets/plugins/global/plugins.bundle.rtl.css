@@ -3071,7 +3071,7 @@ select.selectpicker {
   float: left;
   height: 100%;
   width: 100%;
-  text-align: left;
+  text-align: right;
   overflow: hidden;
   -webkit-box-flex: 0;
   -ms-flex: 0 1 auto;

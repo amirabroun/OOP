@@ -7,16 +7,28 @@ use PDO;
 
 class Product extends Model
 {
+    protected array $fillable = [
+        'title',
+        'brand_id', // foreign key
+        'tracking_code',
+        'slug',
+        'price',
+        'price_discounted',
+        'description',
+        'stock',
+        'status',
+    ];
+
     public static function createProduct($title, $price, $price_discounted, $stock, $brand_id, $description)
     {
         $title = sanitise($title);
+        $brand_id = (!(int)$brand_id) ? null : (int)$brand_id;
+        $tracking_code = 'DSP-' . generateDigit(8);
+        $slug = sluggable($title);
         $price = sanitise($price);
         $price_discounted = (int)($price_discounted);
         $description = sanitise($description);
         $stock = (!(int)$stock) ? null : (int)$stock;
-        $brand_id = (!(int)$brand_id) ? null : (int)$brand_id;
-        $slug = sluggable($title);
-        $tracking_code = 'DSP-' . generateDigit(8);
 
         $action = new Model("INSERT INTO `products` (`brand_id`, `title`, `slug`, `price`, `price_discounted`, `stock`, `description`, `tracking_code`) VALUES (?,?,?,?,?,?,?,?);");
 
@@ -45,6 +57,22 @@ class Product extends Model
         return $action->fetchAllObject();
     }
 
+    public static function getProduct($id)
+    {
+        $action = new Model("SELECT products.*, brands.title as brand_title, brands.id as brand_id From products
+                                left join brands 
+                                    on products.brand_id = brands.id 
+                                        where products.id = ? LIMIT 1");
+
+        $action->execute($id);
+
+        if (!($action->rowCount() > 0)) {
+            return false;
+        }
+
+        return $action->fetchObject();
+    }
+
     public static function updateProduct($id, $brand_id, $title, $description)
     {
         $title = sanitise($title);
@@ -53,9 +81,9 @@ class Product extends Model
         $id = (int)$id;
         $slug = sluggable($title);
 
-        $action = new Model("update products set title = ?, description = ?, slug = ?, brand_id = ? where id = ?;");
+        $action = new Model("UPDATE products set title = ?, description = ?, slug = ?, brand_id = ? where id = ?;");
 
-        $action->execute([$title, $description, $slug, $brand_id, $id]);
+        return $action->execute([$title, $description, $slug, $brand_id, $id]);
     }
 
     public static function createPhotoProduct($photo_id, $product_id, $sort)
