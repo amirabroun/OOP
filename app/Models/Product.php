@@ -73,6 +73,35 @@ class Product extends Model
         return $action->fetchObject();
     }
 
+    public static function getProductWithSlug($slug)
+    {
+        $action = new Model("SELECT products.*, brands.title as brand_title, brands.id as brand_id From products
+                                left join brands 
+                                    on products.brand_id = brands.id 
+                                        where products.slug = ? LIMIT 1");
+
+        $action->execute($slug);
+
+        if (!($action->rowCount() > 0)) {
+            return false;
+        }
+
+        return $action->fetchObject();
+    }
+
+    public static function getCategories($id)
+    {
+        $action = new Model("SELECT * From category_product where product_id = ?");
+
+        $action->execute($id);
+
+        if (!($action->rowCount() > 0)) {
+            return false;
+        }
+
+        return $action->fetchObject();
+    }
+
     public static function updateProduct($id, $brand_id, $title, $description)
     {
         $title = sanitise($title);

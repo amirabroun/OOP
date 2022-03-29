@@ -17,7 +17,7 @@ include "Views/partials/aside.php"; ?>
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-lg-6 mb-4">
-                                            <label>عنوان:</label>
+                                            <label>عنوان :</label>
                                             <input type="text" name="title" class="form-control" value="<?php echo $product->title ?>">
                                         </div>
                                         <? #php $categories = App\Models\Category::getCategories(); 
@@ -38,37 +38,51 @@ include "Views/partials/aside.php"; ?>
                                             <span class="form-text text-muted">برند محصول را انتخاب نمایید </span>
                                         </div> -->
                                         <div class="col-lg-6 mb-3">
-                                            <label>قیمت:</label>
+                                            <label>قیمت :</label>
                                             <input type="text" name="price" class="form-control" value="<?php echo $product->price ?>">
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>با تخفیف:</label>
+                                            <label>با تخفیف :</label>
                                             <input type="text" name="price_discounted" class="form-control" value="<?php echo $product->price_discounted ?>">
                                         </div>
                                         <div class="col-lg-6 mb-4">
-                                            <label>تعداد:</label>
+                                            <label>تعداد :</label>
                                             <input type="number" name="stock" class="form-control" value="<?php echo $product->stock ?>">
                                         </div>
-
-                                        <div <?php echo (!$brands = $product->brand_title) ? 'hidden' : null; ?> class="col-lg-6">
-                                            <label>برند:</label>
-                                            <select name="brand" title="<?php echo $brand->title ?>" class="form-control selectpicker" data-size="7" data-live-search="true">
-                                                <?php
+                                        <div <?#php echo (!$product->brand_title) ? 'hidden' : null ?> class="col-lg-6">
+                                            <label>برند :</label>
+                                            <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
+                                                <?php $brands = App\Models\Brand::getBrands();
                                                 if ($brands) {
-                                                    foreach ($brands as $brand) { ?>
+                                                    foreach ($brands as $brand) {
+                                                ?>
                                                         <option value="<?php echo $brand->id ?>"><?php echo $brand->title ?></option>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
                                             </select>
-                                            <span class="form-text text-muted">برند محصول را انتخاب نمایید </span>
                                         </div>
+                                        <!-- <#?php $categories = \App\Models\Product::getCategories($product->id); ?>
+                                        <div <#?php echo (!$categories) ? 'hidden' : null ?> class="col-lg-6">
+                                            <label>دسته بندی :</label>
+                                            <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
+                                                <#?php $brands = App\Models\Brand::getBrands();
+                                                if ($categories) {
+                                                    foreach ($categories as $brand) {
+                                                ?>
+                                                        <option value="<?#php echo $brand->id ?>"><?#php echo $brand->title ?></option>
+                                                <#?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div> -->
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>توضیحات:</label>
-                                            <textarea class="form-control" name="description" id="product_description" rows="3"></textarea>
+                                            <textarea class="form-control" name="description" id="product_description" rows="3"><?php echo $product->description ?></textarea>
                                         </div>
                                     </div>
                                 </div>

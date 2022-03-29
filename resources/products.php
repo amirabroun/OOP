@@ -132,7 +132,7 @@ include "Views/partials/aside.php"; ?>
                                                     </svg>
                                                 </span>
                                             </a>
-                                            <a data-product-id="<?php echo $product->id; ?>" data-title="<?php echo $product->title; ?>" data-description="<?php echo $product->description; ?>" data-brand="<?php echo $product->brand_id; ?>" href="javascript:;" data-toggle="modal" data-target="#edit_product" class="btn btn-icon btn-light btn-hover-primary btn-sm btn-edit-product">
+                                            <a href="<?php echo productLink($product->id) ?>" class="btn btn-icon btn-light btn-hover-primary btn-sm btn-edit-product">
                                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -145,9 +145,9 @@ include "Views/partials/aside.php"; ?>
                                             </a>
                                         </td>
                                     </tr>
-                            <?php }
-                            }
-                            ?>
+                            <?php
+                                }
+                            } ?>
                         </tbody>
                     </table>
                 </div>

@@ -49,9 +49,9 @@ function categoryLink($id): string
     return "/product.php?category=$id";
 }
 
-function productLink($slug)
+function productLink($id)
 {
-    return url("/single-product.php?product=$slug");
+    return url("/products/$id");
 }
 
 function dd(...$data)
