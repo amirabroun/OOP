@@ -91,7 +91,10 @@ class Product extends Model
 
     public static function getCategories($id)
     {
-        $action = new Model("SELECT * From category_product where product_id = ?");
+        $action = new Model("SELECT category_product.*, categories.* From category_product
+                                left join categories 
+                                    on category_product.category_id = categories.id 
+                                        where product_id = ?");
 
         $action->execute($id);
 
@@ -99,7 +102,47 @@ class Product extends Model
             return false;
         }
 
-        return $action->fetchObject();
+        return self::sortingCategories($action->fetchAllObject());
+    }
+
+    public static function sortingCategories(array|object $categories, $return = 'all|parent|category')
+    {
+        $category_parent_id = 0;
+
+        foreach ($categories as $category) {
+            if (isEmpty($category->parent_id)) {
+                $category_parent_id = $category->id;
+            }
+        }
+
+        $row = count($categories);
+        $clean_category_id = [$category_parent_id];
+
+        while ($row) {
+            foreach ($categories as $category) {
+                if ($category->parent_id == $category_parent_id) {
+                    $clean_category_id[] = $category->id;
+                    $category_parent_id = $category->id;
+                }
+            }
+            $row--;
+        }
+
+        $clean_category = [];
+        foreach ($clean_category_id as $category_id) {
+            foreach ($categories as $category) {
+                if ($category->id === $category_id) {
+                    $clean_category[] = $category;
+                }
+            }
+        }
+
+        if ($return === 'parent')
+            return $clean_category[0];
+        if ($return === 'category')
+            return end($clean_category);
+
+        return $clean_category;
     }
 
     public static function updateProduct($id, $brand_id, $title, $description)

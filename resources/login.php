@@ -59,22 +59,6 @@
     <script src="<?php echo assets('/js/scripts.bundle.js'); ?>"></script>
     <script src="<?php echo assets('/js/login-general.js'); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <?php if (isset($_SESSION['message'])) { ?>
-        <script>
-            Swal.fire({
-                title: "<?php echo $_SESSION['message']['title'] ?>",
-                html: "<?php echo $_SESSION['message']['text'] ?>",
-                icon: "<?php echo $_SESSION['message']['type'] ?>",
-                buttonsStyling: false,
-                confirmButtonText: "متوجه شدم!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-        </script>
-    <?php unset($_SESSION['message']);
-    } ?>
 </body>
 
 </html>

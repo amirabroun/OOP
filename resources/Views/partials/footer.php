@@ -95,23 +95,6 @@
 <script src="<?php echo assets('/js/pages/widgets.js'); ?>"></script>
 <script src="<?php echo assets('/js/config.datatable.js'); ?>"></script>
 <script src="<?php echo assets('/js/app.js'); ?>"></script>
-
-
-<?php if (isset($_SESSION['message'])) { ?>
-    <script>
-        Swal.fire({
-            title: "<?php echo $_SESSION['message']['title'] ?>",
-            html: "<?php echo $_SESSION['message']['text'] ?>",
-            icon: "<?php echo $_SESSION['message']['type'] ?>",
-            buttonsStyling: false,
-            confirmButtonText: "متوجه شدم!",
-            customClass: {
-                confirmButton: "btn btn-primary"
-            }
-        });
-    </script>
-<?php unset($_SESSION['message']);
-} ?>
 </body>
 
 </html>

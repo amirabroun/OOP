@@ -56,8 +56,8 @@ function productLink($id)
 
 function dd(...$data)
 {
+    var_dump((object)$data);
     die(var_dump([
-        $data,
         'page name' => pageName(),
         'uri' => uri(),
     ]));
@@ -185,4 +185,51 @@ function sweetAlertValidatorErrorHandling(array $errors)
     }
 
     return $rules;
+}
+
+if (isset($_SESSION['message'])) { ?>
+    <script>
+        $.ajax({
+            success: function(response) {
+                if (response.status === 200) {
+                    Swal.fire({
+                        title: response.message.title,
+                        html: response.message.text,
+                        icon: response.message.type,
+                        buttonsStyling: false,
+                        confirmButtonText: "متوجه شدم!",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    }).then(function(done) {
+                        if (done.isConfirmed === true) {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: response.message.title,
+                        html: response.message.text,
+                        icon: response.message.type,
+                        buttonsStyling: false,
+                        confirmButtonText: "متوجه شدم!",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
+                }
+            }
+        });
+        Swal.fire({
+            title: "<?php echo $_SESSION['message']['title'] ?>",
+            html: "<?php echo $_SESSION['message']['text'] ?>",
+            icon: "<?php echo $_SESSION['message']['type'] ?>",
+            buttonsStyling: false,
+            confirmButtonText: "متوجه شدم!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        });
+    </script>
+<?php unset($_SESSION['message']);
 }
