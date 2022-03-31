@@ -145,7 +145,7 @@ $('#form_picture_product').on('submit', function (e) {
     $data.append('action', 'upload_picture_product');
 
     $.ajax({
-        url: '//routes/web.php',
+        url: '/routes/web.php',
         method: 'POST',
         contentType: false,
         cache: false,

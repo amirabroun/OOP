@@ -105,6 +105,7 @@ class ProductController extends Controller
 
     public static function updateProduct(ProductRequest $request)
     {
+        dd($request);
         $product = $request->validate([
             'title' => 'required',
             'brand_id' => '',

@@ -16,46 +16,16 @@ include "Views/partials/aside.php"; ?>
                                 <input type="hidden" name="action" value="update_product">
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <div class="col-lg-6 mb-4">
+                                        <div class="col-lg-6 mb-6">
                                             <label>عنوان :</label>
                                             <input type="text" name="title" class="form-control" value="<?php echo $product->title ?>">
                                         </div>
-                                        <? #php $categories = App\Models\Category::getCategories(); 
-                                        ?>
-                                        <!-- <div <? #php echo (!$categories) ? 'hidden' : null 
-                                                    ?> class="col-lg-6">
-                                            <label>دسته بندی:</label>
-                                            <select multiple name="category[]" title="دسته بندی را انتخاب کنید..." class="form-control selectpicker" data-size="7" data-live-search="true">
-                                                <?php
-                                                if ($categories) {
-                                                    foreach ($categories as $category) { ?>
-                                                        <option value="<?php echo $category->id ?>"><?php echo $category->title ?></option>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                            <span class="form-text text-muted">برند محصول را انتخاب نمایید </span>
-                                        </div> -->
-                                        <div class="col-lg-6 mb-3">
-                                            <label>قیمت :</label>
-                                            <input type="text" name="price" class="form-control" value="<?php echo $product->price ?>">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label>با تخفیف :</label>
-                                            <input type="text" name="price_discounted" class="form-control" value="<?php echo $product->price_discounted ?>">
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <label>تعداد :</label>
-                                            <input type="number" name="stock" class="form-control" value="<?php echo $product->stock ?>">
-                                        </div>
-                                        <div <?#php echo (!$product->brand_title) ? 'hidden' : null ?> class="col-lg-6">
+                                        <div class="col-lg-6 mb-6">
+                                            <?php $brands = App\Models\Brand::getBrands(); ?>
                                             <label>برند :</label>
                                             <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
-                                                <?php $brands = App\Models\Brand::getBrands();
-                                                if ($brands) {
-                                                    foreach ($brands as $brand) {
-                                                ?>
+                                                <?php if ($brands) {
+                                                    foreach ($brands as $brand) { ?>
                                                         <option value="<?php echo $brand->id ?>"><?php echo $brand->title ?></option>
                                                 <?php
                                                     }
@@ -63,24 +33,55 @@ include "Views/partials/aside.php"; ?>
                                                 ?>
                                             </select>
                                         </div>
-                                        <!-- <#?php $categories = \App\Models\Product::getCategories($product->id); ?>
-                                        <div <#?php echo (!$categories) ? 'hidden' : null ?> class="col-lg-6">
-                                            <label>دسته بندی :</label>
-                                            <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
-                                                <#?php $brands = App\Models\Brand::getBrands();
-                                                if ($categories) {
-                                                    foreach ($categories as $brand) {
-                                                ?>
-                                                        <option value="<?#php echo $brand->id ?>"><?#php echo $brand->title ?></option>
-                                                <#?php
-                                                    }
+                                        <div class="col-lg-4 mb-6">
+                                            <label>قیمت :</label>
+                                            <input type="text" name="price" class="form-control" value="<?php echo $product->price ?>">
+                                        </div>
+                                        <div class="col-lg-4 mb-6">
+                                            <label>با تخفیف :</label>
+                                            <input type="text" name="price_discounted" class="form-control" value="<?php echo $product->price_discounted ?>">
+                                        </div>
+                                        <div class="col-lg-4 mb-6">
+                                            <label>تعداد :</label>
+                                            <input type="number" name="stock" class="form-control" value="<?php echo $product->stock ?>">
+                                        </div>
+                                        <div class="col-lg-12 mt-3">
+                                            <?php $categories = \App\Models\Product::getCategories($product->id); ?> دسته بندی : 
+                                            <?php $last_parent_id = null;
+                                            if ($categories) {
+                                                foreach ($categories as $category) {
+                                                    $last_parent_id = $category->id; ?>
+                                                    <a href="javascript:;" data-target="#edit_product" data-toggle="tooltip" data-theme="dark" class="text-dark text-hover-warning category btn-show-description" type="button" data-title="حذف" data-toggle="modal">
+                                                        <?php echo $category->title; ?>
+                                                    </a> /
+                                            <?php
                                                 }
-                                                ?>
-                                            </select>
-                                        </div> -->
+                                            }
+
+                                            if (isEmpty($last_parent_id)) {
+                                                $categories = \App\Models\Category::getCategoryParents();
+                                            } else {
+                                                # code...
+                                            } ?>
+
+
+
+                                            <button href="javascript:;" 
+                                            title="انتخاب دسته بندی" 
+                                            data-toggle="tooltip" 
+                                            data-theme="dark"
+                                            data-categories="<?php $categories ?>"
+                                            id="select_categories" 
+                                            class="text-success">
+                                            / + /
+                                        </button>
+                                        
+                                        
+                                        
+                                        </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-12 mb-6">
                                             <label>توضیحات:</label>
                                             <textarea class="form-control" name="description" id="product_description" rows="3"><?php echo $product->description ?></textarea>
                                         </div>
@@ -105,5 +106,55 @@ include "Views/partials/aside.php"; ?>
         </div>
     </div>
     <!--end::Container-->
+</div>
+
+<div class="modal fade" id="edit_product" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ویرایش «<span id="edit_product_title"></span>»</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form" action="" method="post">
+                    <input type="hidden" name="id">
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>عنوان:</label>
+                            <input type="text" name="title" class="form-control" placeholder="عنوان محصول را وارد کنید..." />
+                        </div>
+                        <?php $brands = App\Models\Brand::getBrands() ?>
+                        <div <?php echo (!$brands) ? 'hidden' : null ?> class="col-lg-6">
+                            <label>انتخاب برند</label>
+                            <select name="brand" title="برند" class="form-control selectpicker" data-size="7" data-live-search="true">
+                                <?php
+                                if ($brands) {
+                                    foreach ($brands as $brand) {
+                                ?>
+                                        <option value="<?php echo $brand->id ?>"><?php echo $brand->title ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                            <span class="form-text text-muted">برند را انتخاب نمایید.</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <label>توضیحات:</label>
+                            <textarea class="form-control" name="description" id="product_description" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="submit_update_product" type="button" class="btn btn-light-success font-weight-bold">ثبت تغییرات</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
 </div>
 <?php include "Views/partials/footer.php"; ?>
