@@ -18,6 +18,19 @@ class Brand extends Model
         return $action->fetchAllObject();
     }
 
+    public static function getBrand(int $id)
+    {
+        $action = new Model("SELECT * From brands where id = ?");
+
+        $action->execute([$id]);
+
+        if (!$action->rowCount() > 0) {
+            return false;
+        }
+
+        return $action->fetchObject();
+    }
+
     public static function createBrand($title, $description): bool
     {
         $title = sanitise($title);
