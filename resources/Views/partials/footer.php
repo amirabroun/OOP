@@ -96,6 +96,7 @@
 <script src="<?php echo assets('/js/config.datatable.js'); ?>"></script>
 <script src="<?php echo assets('/js/app.js'); ?>"></script>
 <script src="<?php echo assets('/js/update-product.js'); ?>"></script>
+<script src="<?php echo assets('/js/pages/crud/forms/widgets/select2.js'); ?>"></script>
 </body>
 
 </html>
