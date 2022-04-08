@@ -1,5 +1,5 @@
-<?php include __DIR__ . "partials/header.php";
-include __DIR__ . "partials/aside.php"; ?>
+<?php include __DIR__ . "/../partials/header.php";
+include __DIR__ . "/../partials/aside.php"; ?>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px;">
     <div class="d-flex flex-column-fluid">
         <div class="container">
@@ -172,4 +172,4 @@ include __DIR__ . "partials/aside.php"; ?>
     </div>
 </div>
 <!--End modal Edit Brand-->
-<?php include __DIR__ . "partials/footer.php"; ?>
+<?php include __DIR__ . "/../partials/footer.php"; ?>
