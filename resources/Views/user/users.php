@@ -1,5 +1,5 @@
-<?php include "Views/partials/header.php";
-include "Views/partials/aside.php"; ?>
+<?php include __DIR__ . "Views/partials/header.php";
+include __DIR__ . "Views/partials/aside.php"; ?>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px;">
     <div class="d-flex flex-column-fluid">
         <div class="container">
@@ -26,9 +26,7 @@ include "Views/partials/aside.php"; ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            foreach ($users as $key => $user) {
-                            ?>
+                            <?php foreach ($users as $key => $user) { ?>
                                 <tr>
                                     <td><?php echo $key + 1 ?></td>
                                     <td><?php echo $user->first_name; ?></td>
@@ -57,8 +55,7 @@ include "Views/partials/aside.php"; ?>
                                     </td>
                                 </tr>
                             <?php
-                            }
-                            ?>
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -66,4 +63,4 @@ include "Views/partials/aside.php"; ?>
         </div>
     </div>
 </div>
-<?php include "Views/partials/footer.php"; ?>
+<?php include __DIR__ . "Views/partials/footer.php"; ?>

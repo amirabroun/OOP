@@ -1,4 +1,4 @@
-<?php include "Views/partials/header.php";
+<?php include __DIR__ . "Views/partials/header.php";
 include "Views/partials/aside.php"; ?>
 <div class="d-flex flex-column-fluid mb-20">
     <!--begin::Container-->
