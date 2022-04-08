@@ -8,9 +8,26 @@ class Category extends Model
 {
     public static function getCategoryParents()
     {
-        $action = new Model("SELECT * From categories where parent_id IS NULL  and status = 'active'");
+        $action = new Model("SELECT * From categories where parent_id IS NULL and status = 'active'");
 
         $action->execute();
+
+        if (!$action->rowCount() > 0) {
+            return false;
+        }
+
+        return $action->fetchAllObject();
+    }
+
+    public static function getCategoryParent(int $id)
+    {
+    }
+
+    public static function getCategoryChild(int $id)
+    {
+        $action = new Model("SELECT * From categories where parent_id = ?");
+
+        $action->execute([$id]);
 
         if (!$action->rowCount() > 0) {
             return false;

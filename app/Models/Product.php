@@ -105,7 +105,7 @@ class Product extends Model
         return self::sortingCategories($action->fetchAllObject());
     }
 
-    public static function sortingCategories(array|object $categories, $return = 'all|parent|category')
+    public static function sortingCategories(array|object $categories, $return = 'all|parent|child')
     {
         $category_parent_id = 0;
 
@@ -139,7 +139,7 @@ class Product extends Model
 
         if ($return === 'parent')
             return $clean_category[0];
-        if ($return === 'category')
+        if ($return === 'child')
             return end($clean_category);
 
         return $clean_category;
