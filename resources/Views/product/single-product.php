@@ -1,10 +1,10 @@
-<?php include __DIR__ . "Views/partials/header.php";
-include "Views/partials/aside.php"; ?>
+<?php include __DIR__ . "partials/header.php";
+include __DIR__ . "partials/aside.php"; ?>
 <div class="d-flex flex-column-fluid mb-1">
     <!--begin::Container-->
     <div class="container mb-6">
         <div class="card card-custom">
-        <div class="card-header">
+            <div class="card-header">
                 <div class="card-title">
                     <span class="card-icon">
                         <i class="flaticon2-favourite text-primary"></i>
@@ -207,4 +207,4 @@ include "Views/partials/aside.php"; ?>
         </div>
     </div>
 </div>
-<?php include "Views/partials/footer.php"; ?>
+<?php include __DIR__ . "partials/footer.php"; ?>
