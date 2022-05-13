@@ -33,6 +33,11 @@ function assets($path = '')
     return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/' . ltrim($path, '/');
 }
 
+function partials($path = ''): string
+{
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/resources/partials/' . ltrim($path, '/');
+}
+
 function setTitle()
 {
     $page = str_replace(['/', '.php'], '', $_SERVER['SCRIPT_NAME']);
@@ -189,37 +194,6 @@ function sweetAlertValidatorErrorHandling(array $errors)
 
 if (isset($_SESSION['message'])) { ?>
     <script>
-        $.ajax({
-            success: function(response) {
-                if (response.status === 200) {
-                    Swal.fire({
-                        title: response.message.title,
-                        html: response.message.text,
-                        icon: response.message.type,
-                        buttonsStyling: false,
-                        confirmButtonText: "متوجه شدم!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    }).then(function(done) {
-                        if (done.isConfirmed === true) {
-                            window.location.reload();
-                        }
-                    });
-                } else {
-                    Swal.fire({
-                        title: response.message.title,
-                        html: response.message.text,
-                        icon: response.message.type,
-                        buttonsStyling: false,
-                        confirmButtonText: "متوجه شدم!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
-                }
-            }
-        });
         Swal.fire({
             title: "<?php echo $_SESSION['message']['title'] ?>",
             html: "<?php echo $_SESSION['message']['text'] ?>",

@@ -1,5 +1,5 @@
-<?php include __DIR__ . "/../partials/header.php";
-include __DIR__ . "/../partials/aside.php"; ?>
+<?php include __DIR__ . "/../../partials/header.php";
+include __DIR__ . "/../../partials/aside.php"; ?>
 <div class="d-flex flex-column-fluid mb-1">
     <!--begin::Container-->
     <div class="container mb-6">
@@ -207,4 +207,4 @@ include __DIR__ . "/../partials/aside.php"; ?>
         </div>
     </div>
 </div>
-<?php include __DIR__ . "/../partials/footer.php"; ?>
+<?php include __DIR__ . "/../../partials/footer.php"; ?>

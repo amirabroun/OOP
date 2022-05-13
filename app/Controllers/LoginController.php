@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public static function adminLogin(LoginRequest $request)
     {
-        $admin = $request->validate();
+        $admin = $request->validated();
 
         if (!parent::recaptchaVerify($admin->grecaptcha))
             self::failRecaptchaVerify();

@@ -17,6 +17,6 @@
         }
     ],
     "require": {
-        "phroute/phroute": "^2.1"
+        "bramus/router": "^1.6"
     }
 }

@@ -9,11 +9,11 @@ class LoginRequest extends Request
         'password' => 'required|password'
     ];
 
-    public function validate(array $rules = null, string $returnValue = 'post')
+    public function validated(array $rules = null, string $returnValue = 'post')
     {
         if (isNotEmpty($rules))
-            return $this->validateRequest($rules, $returnValue);
+            return $this->validate($rules, $returnValue);
 
-        return $this->validateRequest($this->rules, $returnValue);
+        return $this->validate($this->rules, $returnValue);
     }
 }

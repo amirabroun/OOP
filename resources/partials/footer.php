@@ -97,6 +97,39 @@
 <script src="<?php echo assets('/js/app.js'); ?>"></script>
 <script src="<?php echo assets('/js/update-product.js'); ?>"></script>
 <script src="<?php echo assets('/js/pages/crud/forms/widgets/select2.js'); ?>"></script>
+<script>
+    $.ajax({
+        success: function(response) {
+            if (response.status === 200) {
+                Swal.fire({
+                    title: response.message.title,
+                    html: response.message.text,
+                    icon: response.message.type,
+                    buttonsStyling: false,
+                    confirmButtonText: "متوجه شدم!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                }).then(function(done) {
+                    if (done.isConfirmed === true) {
+                        window.location.reload();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: response.message.title,
+                    html: response.message.text,
+                    icon: response.message.type,
+                    buttonsStyling: false,
+                    confirmButtonText: "متوجه شدم!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                });
+            }
+        }
+    });
+</script>
 </body>
 
 </html>

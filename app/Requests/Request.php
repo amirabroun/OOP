@@ -24,10 +24,10 @@ class Request
         $this->request = (object)REQUEST();
     }
 
-    public function validateRequest(array $rules, $returnValue = null)
+    public function validate(array $rules, $returnValue = null)
     {
         if (!isEmpty($errors = validator($rules)))
-            sweetAlert(sweetAlertValidatorErrorHandling($errors), 'لطفا خطاهای زیر را برطرف کنید!', 'error');
+        sweetAlert(sweetAlertValidatorErrorHandling($errors), 'لطفا خطاهای زیر را برطرف کنید!', 'error');
 
         if ($returnValue == 'post') {
             return $this->post;
