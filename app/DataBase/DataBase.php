@@ -27,7 +27,7 @@ class DataBase
         try {
             $this->cn = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $error) {
-            die("<h3>$error</h3>");
+            die($error->getMessage());
         }
     }
 }
