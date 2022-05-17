@@ -88,15 +88,17 @@
     };
 </script>
 <script src="<?php echo plugins('/global/plugins.bundle.js'); ?>"></script>
+
 <script src="<?php echo plugins('/custom/prismjs/prismjs.bundle.js'); ?>"></script>
 <script src="<?php echo plugins('/custom/datatables/datatables.bundle.js'); ?>"></script>
 <script src="<?php echo plugins('/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
 
-<script src="<?php echo jsFiles('/scripts.bundle.js'); ?>"></script>
-<script src="<?php echo jsFiles('/pages/widgets.js'); ?>"></script>
-<script src="<?php echo jsFiles('/config.datatable.js'); ?>"></script>
-<script src="<?php echo jsFiles('/app.js'); ?>"></script>
-<script src="<?php echo jsFiles('/update-product.js'); ?>"></script>
+<script src="<?php echo jsFiles('/app/pages/widgets.js'); ?>"></script>
+
+<script src="<?php echo jsFiles('/app/app.js'); ?>"></script>
+<script src="<?php echo jsFiles('/app/config.datatable.js'); ?>"></script>
+<script src="<?php echo jsFiles('/app/scripts.bundle.js'); ?>"></script>
+
 <script src="<?php echo jsFiles('/brand/brand.js'); ?>"></script>
 <script src="<?php echo jsFiles('/category/category.js'); ?>"></script>
 <script src="<?php echo jsFiles('/product/product.js'); ?>"></script>

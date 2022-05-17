@@ -57,7 +57,8 @@
     <script src="<?php echo plugins('/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo plugins('/custom/prismjs/prismjs.bundle.js'); ?>"></script>
 
-    <script src="<?php echo jsFiles('/scripts.bundle.js'); ?>"></script>
+    <script src="<?php echo jsFiles('/app/scripts.bundle.js'); ?>"></script>
+
     <script src="<?php echo jsFiles('/auth/login.js'); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
