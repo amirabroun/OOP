@@ -6,8 +6,8 @@
     <meta name="description" content="Login page example" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="<?php echo assets('/css/pages/login/login-2.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo assets('/plugins/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/style.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/header/base/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
@@ -54,10 +54,11 @@
         </div>
     </div>
 
-    <script src="<?php echo assets('/plugins/global/plugins.bundle.js'); ?>"></script>
-    <script src="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.js'); ?>"></script>
-    <script src="<?php echo assets('/js/scripts.bundle.js'); ?>"></script>
-    <script src="<?php echo assets('/js/login-general.js'); ?>"></script>
+    <script src="<?php echo plugins('/global/plugins.bundle.js'); ?>"></script>
+    <script src="<?php echo plugins('/custom/prismjs/prismjs.bundle.js'); ?>"></script>
+
+    <script src="<?php echo jsFiles('/scripts.bundle.js'); ?>"></script>
+    <script src="<?php echo jsFiles('/auth/login.js'); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 

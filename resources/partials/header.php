@@ -6,16 +6,16 @@
     <title><?php echo appTitle() ?></title>
     <meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="<?php echo assets('/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo assets('/plugins/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/custom/fullcalendar/fullcalendar.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/global/plugins.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/style.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/header/base/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/brand/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/aside/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/media/logos/favicon.ico'); ?>" rel="shortcut icon" />
-    <link href="<?php echo assets('/plugins/custom/datatables/datatables.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo plugins('/custom/datatables/datatables.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading footer-fixed">

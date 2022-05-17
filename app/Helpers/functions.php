@@ -33,6 +33,16 @@ function assets($path = '')
     return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/' . ltrim($path, '/');
 }
 
+function plugins($path = '')
+{
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/plugins' . ltrim($path, '/');
+}
+
+function jsFiles($path = '')
+{
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/js' . ltrim($path, '/');
+}
+
 function partials($path = ''): string
 {
     return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/resources/partials/' . ltrim($path, '/');
