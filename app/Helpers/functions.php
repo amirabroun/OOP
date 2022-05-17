@@ -35,12 +35,12 @@ function assets($path = '')
 
 function plugins($path = '')
 {
-    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/plugins' . ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/plugins/' . ltrim($path, '/');
 }
 
 function jsFiles($path = '')
 {
-    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/js' . ltrim($path, '/');
+    return originBaseUrl() . '/' . $_SERVER['HTTP_HOST'] . '/public/Assets/js/' . ltrim($path, '/');
 }
 
 function partials($path = ''): string
