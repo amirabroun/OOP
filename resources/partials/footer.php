@@ -87,16 +87,19 @@
         "font-family": "Poppins"
     };
 </script>
-<script src="<?php echo assets('/plugins/global/plugins.bundle.js'); ?>"></script>
-<script src="<?php echo assets('/plugins/custom/prismjs/prismjs.bundle.js'); ?>"></script>
-<script src="<?php echo assets('/js/scripts.bundle.js'); ?>"></script>
-<script src="<?php echo assets('/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
-<script src="<?php echo assets('/plugins/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
-<script src="<?php echo assets('/js/pages/widgets.js'); ?>"></script>
-<script src="<?php echo assets('/js/config.datatable.js'); ?>"></script>
-<script src="<?php echo assets('/js/app.js'); ?>"></script>
-<script src="<?php echo assets('/js/update-product.js'); ?>"></script>
-<script src="<?php echo assets('/js/pages/crud/forms/widgets/select2.js'); ?>"></script>
+<script src="<?php echo plugins('/global/plugins.bundle.js'); ?>"></script>
+<script src="<?php echo plugins('/custom/prismjs/prismjs.bundle.js'); ?>"></script>
+<script src="<?php echo plugins('/custom/datatables/datatables.bundle.js'); ?>"></script>
+<script src="<?php echo plugins('/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
+
+<script src="<?php echo jsFiles('/scripts.bundle.js'); ?>"></script>
+<script src="<?php echo jsFiles('/pages/widgets.js'); ?>"></script>
+<script src="<?php echo jsFiles('/config.datatable.js'); ?>"></script>
+<script src="<?php echo jsFiles('/app.js'); ?>"></script>
+<script src="<?php echo jsFiles('/update-product.js'); ?>"></script>
+<script src="<?php echo jsFiles('/brand/brand.js'); ?>"></script>
+<script src="<?php echo jsFiles('/category/category.js'); ?>"></script>
+<script src="<?php echo jsFiles('/product/product.js'); ?>"></script>
 <script>
     $.ajax({
         success: function(response) {

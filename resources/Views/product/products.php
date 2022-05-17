@@ -132,7 +132,7 @@ include __DIR__ . "/../../partials/aside.php"; ?>
                                                     </svg>
                                                 </span>
                                             </a>
-                                            
+
                                             <a href="<?php echo productLink($product->id) ?>" class="btn btn-icon btn-light btn-hover-primary btn-sm btn-edit-product">
                                                 <span class="svg-icon svg-icon-md svg-icon-primary">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -144,7 +144,6 @@ include __DIR__ . "/../../partials/aside.php"; ?>
                                                     </svg>
                                                 </span>
                                             </a>
-                                        
                                         </td>
                                     </tr>
                             <?php

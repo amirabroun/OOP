@@ -7,7 +7,7 @@ services:
         links:
             - php
         volumes:
-            - /home/amirabroun/Documents/code/didishop/admin/:/usr/share/nginx/www
+            - /home/amirabroun/Documents/php-repo/OOP/:/usr/share/nginx/www
         ports:
             - 8000:80
 
@@ -15,8 +15,8 @@ services:
         container_name: php
         build: ./Docker/php
         volumes:
-            - /home/amirabroun/Documents/code/didishop/admin/:/usr/share/nginx/www
-        working_dir: /home/amirabroun/Documents/code/didishop/admin:/usr/share/nginx/www
+            - /home/amirabroun/Documents/php-repo/OOP/:/usr/share/nginx/www
+        working_dir: /home/amirabroun/Documents/php-repo/OOP:/usr/share/nginx/www
         env_file:
             - ./.env
 networks:

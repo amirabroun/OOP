@@ -9,13 +9,13 @@ $('#datatable_categories').DataTable({
             targets: 3,
             render: function (data) {
                 const status = {
-                    'active': {'title': 'فعال', 'class': ' label-light-success'},
-                    'inactive': {'title': 'غیر فعال', 'class': ' label-light-danger'}
+                    'active': { 'title': 'فعال', 'class': ' label-light-success' },
+                    'inactive': { 'title': 'غیر فعال', 'class': ' label-light-danger' }
                 };
-                if (typeof status[data] === 'undefined') {
+                if (typeof status[ data ] === 'undefined') {
                     return data;
                 }
-                return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
+                return '<span class="label label-lg font-weight-bold' + status[ data ].class + ' label-inline">' + status[ data ].title + '</span>';
             }
         }
     ]
@@ -31,10 +31,10 @@ $('#datatable_products').DataTable({
                     'active': { 'title': 'فعال', 'class': ' label-light-success' },
                     'inactive': { 'title': 'غیر فعال', 'class': ' label-light-danger' }
                 };
-                if (typeof status[data] === 'undefined') {
+                if (typeof status[ data ] === 'undefined') {
                     return data;
                 }
-                return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
+                return '<span class="label label-lg font-weight-bold' + status[ data ].class + ' label-inline">' + status[ data ].title + '</span>';
             },
         },
     ],
@@ -50,10 +50,10 @@ $('#datatable_brands').DataTable({
                     'active': { 'title': 'فعال', 'class': ' label-light-success' },
                     'inactive': { 'title': 'غیر فعال', 'class': ' label-light-danger' }
                 };
-                if (typeof status[data] === 'undefined') {
+                if (typeof status[ data ] === 'undefined') {
                     return data;
                 }
-                return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
+                return '<span class="label label-lg font-weight-bold' + status[ data ].class + ' label-inline">' + status[ data ].title + '</span>';
             },
         },
     ],
