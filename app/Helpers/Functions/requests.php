@@ -63,7 +63,7 @@ function uri()
     return ltrim(str_replace('.php', '', $_SERVER['REQUEST_URI']), '/');
 }
 
-function checkAction($action)
+function checkRoute($action)
 {
     if (!(POST("action") && POST("action") === $action)) {
         return false;

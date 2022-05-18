@@ -4,10 +4,11 @@ namespace App\Helpers;
 
 class ApiResponse
 {
-    private array $status;
-    private array $message;
-    private array $data;
-    private array $pagination;
+    public int $status;
+    public string $title;
+    public string $message;
+    public array $data;
+    public string $pagination;
 
     /**
      * @return json
@@ -65,22 +66,6 @@ class ApiResponse
     }
 
     /**
-     * @param $index
-     * @param null $value
-     */
-    public function setData($index, $value = null)
-    {
-        if (is_array($index)) {
-            array_push($this->data, $index);
-        } else if (is_object($value)) {
-            $this->pagination = $value;
-            $this->data[$index] = $value;
-        } else {
-            $this->data[$index] = $value;
-        }
-    }
-
-    /**
      * @param mixed $status
      */
     public function setStatus($status)
@@ -112,5 +97,26 @@ class ApiResponse
 
         $index = get_class($object);
         $this->message[$index] = $description;
+    }
+
+    /**
+     * @param string $title
+     * @param string $text
+     * @param string $type
+     * @param int $reload
+     *
+     * @return never
+     */
+    public function sweetAlert()
+    {
+        responseJson([
+            'status' => $this->status,
+            'confirmButtonText' => $this->confirmButtonText ?? 'متوجه شدم!',
+            'message' => [
+                'title' => $this->title,
+                'text' =>  $this->message,
+                'type' => ($this->status === 200) ? 'success' : 'error',
+            ]
+        ]);
     }
 }

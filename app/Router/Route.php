@@ -2,10 +2,21 @@
 
 namespace App\Router;
 
+use ReflectionMethod;
+
 class Route
 {
 
     private static $resources = '/resources/Views/';
+    private $controller;
+    private $function;
+    private $requset;
+    private $route;
+
+    public function __construct($route = null)
+    {
+        $this->route = $route;
+    }
 
     public static function get($route, $path)
     {
@@ -14,11 +25,45 @@ class Route
         }
     }
 
-    public static function post($route, $path)
+    public static function post($route, array|string|null $action = null)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            self::route($route, $path);
+        if (!isset($action)) {
+            return (new Route($route));
         }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && checkRoute($route)) {
+            $router = new Route;
+            $router->loadMethodController($action);
+            $function = $router->function;
+            $router->findSpecialRequest();
+
+            (new $router->controller)->$function(new $router->requset);
+        }
+    }
+
+    public function loadMethodController(array|string $action)
+    {
+        if (is_string($action)) {
+            $this->controller = "App\\Controllers\\" . substr($action, 0, strpos($action, "@"));
+            $this->function = substr($action, strpos($action, "@") + 1);
+        } else {
+            $this->controller = $action[0];
+            $this->function = $action[1];
+        }
+    }
+
+    public function findSpecialRequest()
+    {
+        $classMethod = new ReflectionMethod($this->controller, $this->function);
+        $parameters = $classMethod->getParameters();
+        $function = $this->function;
+
+
+        if (!isset($parameters[0])) {
+            (new $this->controller)->$function();
+        }
+
+        $this->requset = (string)$parameters[0]->getType();
     }
 
     public static function put($route, $path)
@@ -115,5 +160,22 @@ class Route
     public static function includePath(string $path): string
     {
         return str_replace('.', '/', $path) . '.php';
+    }
+
+    public function controller($controller)
+    {
+        $this->controller = new $controller();
+        return $this;
+    }
+
+    public function function($method)
+    {
+        $this->function = $method;
+        $this->findSpecialRequest();
+        if (checkRoute($this->route)) {
+            $this->controller->$method(new $this->requset);
+        }
+
+        return $this;
     }
 }

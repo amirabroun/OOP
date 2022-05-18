@@ -8,20 +8,28 @@ use App\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public static function adminLogin(LoginRequest $request)
+    public function adminLogin(LoginRequest $request)
     {
         $admin = $request->validated();
 
-        if (!parent::recaptchaVerify($admin->grecaptcha))
-            self::failRecaptchaVerify();
+        if (!$this->recaptchaVerify($admin->grecaptcha))
+            $this->failRecaptchaVerify();
 
         if (!$admin = Admin::doLogin($admin->username, $admin->password))
-            self::failAdminLogin();
+            $this->failAdminLogin();
 
-        self::successAdminLogin($admin);
+        $this->successAdminLogin($admin);
     }
 
-    public static function successAdminLogin(object $admin)
+    public function logOut()
+    {
+        if (isset($_SESSION['_admin_log_']))
+            unset($_SESSION['_admin_log_']);
+
+        redirect('/login/secret/' . md5(secretKey('secret_login')));
+    }
+
+    public function successAdminLogin(object $admin)
     {
         $_SESSION['_admin_log_'] = [
             'id' => $admin->id,
@@ -36,12 +44,12 @@ class LoginController extends Controller
         sweetAlert($text, $title, 'success', true);
     }
 
-    public static function failAdminLogin()
+    public function failAdminLogin()
     {
         sweetAlert('اطلاعات وارد شده نامعتبر است!', 'ورود ناموفق', 'error');
     }
 
-    public static function failRecaptchaVerify()
+    public function failRecaptchaVerify()
     {
         sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error', true);
     }
