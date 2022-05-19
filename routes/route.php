@@ -7,8 +7,7 @@ Route::get('/', 'index');
 
 // login
 Route::get('/login/secret/' . md5(secretKey('secret_login')), 'auth.login');
-// Route::post('admin_login', 'LoginController@adminLogin');
-Route::post('admin_login')->controller(App\Controllers\LoginController::class)->function('adminLogin');
+Route::post('admin_login')->controller(App\Controllers\LoginController::class, 'adminLogin');
 Route::post('log-out', 'LoginController@logOut');
 
 // product

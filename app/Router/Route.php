@@ -2,68 +2,41 @@
 
 namespace App\Router;
 
-use ReflectionMethod;
-
 class Route
 {
-
     private static $resources = '/resources/Views/';
-    private $controller;
-    private $function;
-    private $requset;
-    private $route;
-
-    public function __construct($route = null)
-    {
-        $this->route = $route;
-    }
 
     public static function get($route, $path)
     {
+
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            self::route($route, self::$resources . self::includePath($path));
+            if (strpos($path, 'resources')) {
+                self::route($route, $path);
+            }
+
+            self::route($route, self::$resources . preparePath($path));
         }
     }
 
-    public static function post($route, array|string|null $action = null)
+    public static function post($route, array|string|null $actionTo = null)
     {
-        if (!isset($action)) {
-            return (new Route($route));
+        if (!isset($actionTo)) {
+            return (new Router($route));
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && checkRoute($route)) {
-            $router = new Route;
-            $router->loadMethodController($action);
+            $router = (new Router)->findAction($actionTo);
+
+            $controller = $router->controller;
             $function = $router->function;
-            $router->findSpecialRequest();
+            $request = $router->request;
 
-            (new $router->controller)->$function(new $router->requset);
+            if (isEmpty($request)) {
+                (new $controller)->$function();
+            }
+
+            (new $controller)->$function(new $request);
         }
-    }
-
-    public function loadMethodController(array|string $action)
-    {
-        if (is_string($action)) {
-            $this->controller = "App\\Controllers\\" . substr($action, 0, strpos($action, "@"));
-            $this->function = substr($action, strpos($action, "@") + 1);
-        } else {
-            $this->controller = $action[0];
-            $this->function = $action[1];
-        }
-    }
-
-    public function findSpecialRequest()
-    {
-        $classMethod = new ReflectionMethod($this->controller, $this->function);
-        $parameters = $classMethod->getParameters();
-        $function = $this->function;
-
-
-        if (!isset($parameters[0])) {
-            (new $this->controller)->$function();
-        }
-
-        $this->requset = (string)$parameters[0]->getType();
     }
 
     public static function put($route, $path)
@@ -92,7 +65,7 @@ class Route
         self::route($route, $path);
     }
 
-    public static function route($route, $path)
+    private static function route($route, $path)
     {
         $ROOT = $_SERVER['DOCUMENT_ROOT'];
 
@@ -131,51 +104,5 @@ class Route
 
         include_once("$ROOT/$path");
         exit();
-    }
-
-    public static function out($text)
-    {
-        echo htmlspecialchars($text);
-    }
-
-    public static function set_csrf()
-    {
-        if (!isset($_SESSION["csrf"])) {
-            $_SESSION["csrf"] = bin2hex(random_bytes(50));
-        }
-        echo '<input type="hidden" name="csrf" value="' . $_SESSION["csrf"] . '">';
-    }
-
-    public static function is_csrf_valid()
-    {
-        if (!isset($_SESSION['csrf']) || !isset($_POST['csrf'])) {
-            return false;
-        }
-        if ($_SESSION['csrf'] != $_POST['csrf']) {
-            return false;
-        }
-        return true;
-    }
-
-    public static function includePath(string $path): string
-    {
-        return str_replace('.', '/', $path) . '.php';
-    }
-
-    public function controller($controller)
-    {
-        $this->controller = new $controller();
-        return $this;
-    }
-
-    public function function($method)
-    {
-        $this->function = $method;
-        $this->findSpecialRequest();
-        if (checkRoute($this->route)) {
-            $this->controller->$method(new $this->requset);
-        }
-
-        return $this;
     }
 }
