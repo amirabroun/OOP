@@ -32,11 +32,12 @@ class Request
 
     public function validate(array $rules, $returnValue = null)
     {
-        if (!isEmpty($errors = validator($rules))) {
-            $this->apiResponse->title = 'لطفا خطاهای زیر را برطرف کنید!';
-            $this->apiResponse->message = sweetAlertValidatorErrorHandling($errors);
-            $this->apiResponse->status = 404;
-            $this->apiResponse->sweetAlert();
+        if (isNotEmpty($errors = validator($rules))) {
+            $this->apiResponse
+                ->setTitle('لطفا خطاهای زیر را برطرف کنید!')
+                ->setMessage($errors)
+                ->setStatus(404)
+                ->sweetAlert();
         }
 
         if ($returnValue == 'post') {

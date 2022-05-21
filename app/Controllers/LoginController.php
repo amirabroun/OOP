@@ -29,7 +29,7 @@ class LoginController extends Controller
         redirect('/login/secret/' . md5(secretKey('secret_login')));
     }
 
-    public function successAdminLogin(object $admin)
+    private function successAdminLogin(object $admin)
     {
         $_SESSION['_admin_log_'] = [
             'id' => $admin->id,
@@ -38,19 +38,28 @@ class LoginController extends Controller
             'full_name' => "{$admin->first_name} {$admin->last_name}",
         ];
 
-        $text = $_SESSION['_admin_log_']['full_name'] . ' عزیز';
-        $title = 'شما با موفقیت وارد شدید!';
-
-        sweetAlert($text, $title, 'success', true);
+        $this->apiResponse
+            ->setTitle($_SESSION['_admin_log_']['full_name'] . ' عزیز')
+            ->setMessage('شما با موفقیت وارد شدید!')
+            ->setStatus(200)
+            ->sweetAlert();
     }
 
-    public function failAdminLogin()
+    private function failAdminLogin()
     {
-        sweetAlert('اطلاعات وارد شده نامعتبر است!', 'ورود ناموفق', 'error');
+        $this->apiResponse
+            ->setTitle('ورود ناموفق')
+            ->setMessage('اطلاعات وارد شده نامعتبر است!')
+            ->setStatus(404)
+            ->sweetAlert();
     }
 
-    public function failRecaptchaVerify()
+    private function failRecaptchaVerify()
     {
-        sweetAlert('لطفا ثابت کنید که ربات نیستید!', 'ورود ناموفق', 'error', true);
+        $this->apiResponse
+            ->setTitle('ورود ناموفق')
+            ->setMessage('لطفا ثابت کنید که ربات نیستید!')
+            ->setStatus(404)
+            ->sweetAlert();
     }
 }

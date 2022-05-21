@@ -6,9 +6,14 @@ class ApiResponse
 {
     public int $status;
     public string $title;
-    public string $message;
+    public string|array $message;
     public array $data;
     public string $pagination;
+
+    private const RESPONE = [
+        200 => 'success',
+        404 => 'error',
+    ];
 
     /**
      * @return json
@@ -70,15 +75,26 @@ class ApiResponse
      */
     public function setStatus($status)
     {
-        $this->status = intval($status);
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
     }
 
     /**
      * @param mixed $message
      */
-    private function setMessage($message)
+    public function setMessage($message)
     {
-        $this->message = trim($message);
+        $this->message = $message;
+        return $this;
     }
 
     /**
@@ -99,14 +115,6 @@ class ApiResponse
         $this->message[$index] = $description;
     }
 
-    /**
-     * @param string $title
-     * @param string $text
-     * @param string $type
-     * @param int $reload
-     *
-     * @return never
-     */
     public function sweetAlert()
     {
         responseJson([
@@ -114,9 +122,48 @@ class ApiResponse
             'confirmButtonText' => $this->confirmButtonText ?? 'متوجه شدم!',
             'message' => [
                 'title' => $this->title,
-                'text' =>  $this->message,
-                'type' => ($this->status === 200) ? 'success' : 'error',
+                'text' =>  $this->prepareErrorFormForSweetAlert($this->message),
+                'type' => $this->getTypeResponse($this->status),
             ]
         ]);
+    }
+
+    /**
+     * @param array $errors
+     *
+     * @return string $rules // this is string ready for sweet alert
+     */
+    public function prepareErrorFormForSweetAlert(array|string $errors)
+    {
+        if (is_string($errors))
+            return $errors;
+
+        $ruleAttributes = attributesTranslate('rule');
+        $rules = '';
+
+        foreach ($errors as $keyI => $i) {
+            $cleanError = $errors[$keyI];
+
+            foreach ($cleanError as $input => $error) {
+                foreach ($ruleAttributes as $keyRuleAttributes => $rule) {
+
+                    if ($keyRuleAttributes == $error) {
+                        $rules .= translate($input) . "\t" . ': ' . ' ' . $rule;
+                    }
+                }
+            }
+        }
+
+        return $rules;
+    }
+
+    private function getTypeResponse(int $status)
+    {
+        return $this::RESPONE[$status];
+    }
+
+    public function dd(...$data)
+    {
+        redirect("/logger//" . (string)$data);
     }
 }
