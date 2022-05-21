@@ -11,7 +11,7 @@
     <link href="<?php echo plugins('/custom/prismjs/prismjs.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/style.bundle.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/header/base/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo assets('css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo assets('/css/themes/layout/header/menu/light.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/brand/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/css/themes/layout/aside/dark.rtl.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo assets('/media/logos/favicon.ico'); ?>" rel="shortcut icon" />

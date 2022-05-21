@@ -93,7 +93,7 @@
 <script src="<?php echo plugins('/custom/datatables/datatables.bundle.js'); ?>"></script>
 <script src="<?php echo plugins('/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
 
-<script src="<?php echo jsFiles('/app/pages/widgets.js'); ?>"></script>
+<script src="<?php echo jsFiles('/app/widgets.js'); ?>"></script>
 
 <script src="<?php echo jsFiles('/app/app.js'); ?>"></script>
 <script src="<?php echo jsFiles('/app/config.datatable.js'); ?>"></script>
