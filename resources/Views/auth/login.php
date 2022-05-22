@@ -59,7 +59,7 @@
 
     <script src="<?php echo jsFiles('/app/scripts.bundle.js'); ?>"></script>
 
-    <script src="<?php echo jsFiles('/auth/login.js'); ?>"></script>
+    <script src="<?php echo jsFiles('/login/login.js'); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 

@@ -3,7 +3,6 @@ $('#signin_form').on('submit', function (event) {
     const username = $(this).find("input[name='username']").val();
     const password = $(this).find("input[name='password']").val();
     $.ajax({
-        url: '/routes/web.php',
         dataType: 'json',
         method: 'post',
         data: {
@@ -11,6 +10,7 @@ $('#signin_form').on('submit', function (event) {
             password: password,
             grecaptcha: grecaptcha.getResponse(),
             action: 'admin_login',
+            route: '/login/secret/e10adc3949ba59abbe56e057f20f883e',
         },
         success: function (response) {
             Swal.fire({
