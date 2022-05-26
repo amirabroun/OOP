@@ -9,12 +9,29 @@ class Router
     public object|string|null $controller;
     public object|string|null $function;
     public object|string|null $request;
-    private $route;
 
-
-    public function __construct($route = null)
+    public function __construct(private $route = null, $actionTo = null)
     {
-        $this->route = $route;
+        if ($actionTo) $this->findAction($actionTo)->run();
+    }
+
+    public function run()
+    {
+        $controller = $this->controller;
+        $function = $this->function;
+        $request = $this->request;
+
+        isNotEmpty($request)
+            ? (new $controller)->$function(new $request)
+            : (new $controller)->$function();
+    }
+
+    public function findAction($action)
+    {
+        $action = $this->findSpecialMethodController($action);
+        $this->controller = $action['controller'];
+        $this->function = $action['function'];
+        $this->request = $this->findSpecialRequest($this->function);
 
         return $this;
     }
@@ -35,47 +52,34 @@ class Router
         ];
     }
 
-    public function findAction($action)
-    {
-        $action = $this->findSpecialMethodController($action);
-        $this->controller = $action['controller'];
-        $this->function = $action['function'];
-        $this->request = $this->findSpecialRequest($this->function);
-
-        return $this;
-    }
-
     public function findSpecialRequest($function)
     {
         $classMethod = new ReflectionMethod($this->controller, $function);
         $parameters = $classMethod->getParameters();
 
-        if (!isset($parameters[0])) {
-            return $this->request = null;
-        }
+        // has if just request
 
-        return $this->request = (string)$parameters[0]->getType();
+        return $this->request = isset($parameters[0])
+            ? (string)$parameters[0]->getType()
+            : null;
     }
 
     public function controller($controller, $function = null)
     {
-        $this->controller = new $controller();
+        if (isEmpty($this->route)) return $this;
 
-        if ($function) {
-            $this->function($function);
-        }
+        $this->controller = new $controller();
+        if ($function) $this->function($function);
 
         return $this;
     }
 
-    public function function($method)
+    public function function($function)
     {
-        $request = $this->findSpecialRequest($method);
+        if (isEmpty($this->route)) return $this;
 
-        if (checkRoute($this->route)) {
-            $this->controller->$method(new $request ?? null);
-        }
+        $this->request = $this->findSpecialRequest($this->function = $function);
 
-        return $this;
+        $this->run();
     }
 }

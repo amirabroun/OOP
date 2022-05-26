@@ -18,25 +18,9 @@ class Route
         }
     }
 
-    public static function post($route, array|string|null $actionTo = null)
+    public static function post(string $uri, array|string|null $action = null)
     {
-        if (!isset($actionTo)) {
-            return (new Router($route));
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && checkRoute($route)) {
-            $router = (new Router)->findAction($actionTo);
-
-            $controller = $router->controller;
-            $function = $router->function;
-            $request = $router->request;
-
-            if (isEmpty($request)) {
-                (new $controller)->$function();
-            }
-
-            (new $controller)->$function(new $request);
-        }
+        return checkPostUri($uri) ? new Router($uri, $action) : new Router;
     }
 
     public static function put($route, $path)

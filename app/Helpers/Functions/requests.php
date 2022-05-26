@@ -63,13 +63,23 @@ function uri()
     return ltrim(str_replace('.php', '', $_SERVER['REQUEST_URI']), '/');
 }
 
-function checkRoute($action)
+function checkAction($action)
 {
     if (!(POST("action") && POST("action") === $action)) {
         return false;
     }
 
     return true;
+}
+
+function checkUri($uri)
+{
+    return POST("route") && POST("route") === $uri ? true : false;
+}
+
+function checkPostUri($uri)
+{
+    return $_SERVER['REQUEST_METHOD'] === 'POST' && checkUri($uri) ? true : false;
 }
 
 function getAction()
