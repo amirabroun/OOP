@@ -5,6 +5,10 @@ use App\Router\Route;
 Route::get('/test', 'test');
 Route::get('/', 'index');
 
+Route::get('/test/$name', 'test');
+
+Route::newGet('users/{name}/mobile/{phoneNumber}', '');
+
 // login
 Route::get('/login/secret/' . md5(secretKey('secret_login')), 'auth.login');
 

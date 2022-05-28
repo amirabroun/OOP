@@ -156,50 +156,13 @@ function isAjaxRequest(): bool
 }
 
 /**
- * @param string $title
- * @param string $text
- * @param string $type
- * @param int $reload
- *
- * @return never
+ * @param string $routeSection
+ * 
+ * @return bool
  */
-function sweetAlert($text, $title = null, $type = 'success', $reload = false)
+function isParamRouteSection($routeSection)
 {
-    responseJson([
-        'data' => '',
-        'status' => ($reload === false) ? 201 : 200,
-        'message' => [
-            'title' => $title,
-            'text' => $text,
-            'type' => $type
-        ]
-    ]);
-}
-
-/**
- * @param array $errors
- *
- * @return string $rules // this is string ready for sweet alert
- */
-function sweetAlertValidatorErrorHandling(array $errors)
-{
-    $ruleAttributes = attributesTranslate('rule');
-    $rules = '';
-
-    foreach ($errors as $keyI => $i) {
-        $cleanError = $errors[$keyI];
-
-        foreach ($cleanError as $input => $error) {
-            foreach ($ruleAttributes as $keyRuleAttributes => $rule) {
-
-                if ($keyRuleAttributes == $error) {
-                    $rules .= translate($input) . "\t" . ': ' . ' ' . $rule;
-                }
-            }
-        }
-    }
-
-    return $rules;
+    return strstr($routeSection, '{') && strstr($routeSection, '}');
 }
 
 if (isset($_SESSION['message'])) { ?>

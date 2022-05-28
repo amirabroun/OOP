@@ -6,16 +6,33 @@ class Route
 {
     private static $resources = '/resources/Views/';
 
+    public static function newGet($route, $path)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') return;
+
+        $routeSite = explode('/', $route);
+        $routeUri = explode('/', uri());
+
+        if (count($routeSite) !== count($routeUri)) return;
+
+        foreach ($routeSite as $key => $partRoute) {
+            if ($partRoute === $routeUri[$key]) continue;
+            if (!isParamRouteSection($partRoute)) return;
+
+            $var = trim($partRoute, '{}');
+            $$var = ($routeUri[$key]);
+        }
+        dd($name, $phoneNumber); // users/{name}/mobile/{phoneNumber}
+        // dd($var, $$var);
+    }
+
     public static function get($route, $path)
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') return;
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if (strpos($path, 'resources')) {
-                self::route($route, $path);
-            }
-
-            self::route($route, self::$resources . preparePath($path));
-        }
+        strpos($path, 'resources')
+            ? self::route($route, $path)
+            : self::route($route, self::$resources . preparePath($path));
     }
 
     public static function post(string $uri, array|string|null $action = null)

@@ -57,9 +57,7 @@ class Router
         $classMethod = new ReflectionMethod($this->controller, $function);
         $parameters = $classMethod->getParameters();
 
-        // has if just request
-
-        return $this->request = isset($parameters[0])
+        return $this->request = isset($parameters[0]) && strpos($parameters[0], 'App\\Requests\\')
             ? (string)$parameters[0]->getType()
             : null;
     }
