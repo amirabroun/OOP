@@ -73,8 +73,8 @@ function dd(...$data)
 {
     var_dump((object)$data);
     die(var_dump([
-        'page name' => pageName(),
         'uri' => uri(),
+        'line' => __LINE__,
     ]));
 }
 

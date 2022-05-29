@@ -54,7 +54,6 @@ $('#submit_update_product').on('click', function () {
     const brand_id = $modal.find("select[name='brand']").val();
     const description = $modal.find("textarea[name='description']").val();
     $.ajax({
-        url: '/routes/web.php',
         dataType: 'json',
         method: 'post',
         data: {
@@ -109,7 +108,6 @@ $('#form_picture_product').on('submit', function (e) {
     $data.append('action', 'upload_picture_product');
 
     $.ajax({
-        url: '/routes/web.php',
         method: 'POST',
         contentType: false,
         cache: false,

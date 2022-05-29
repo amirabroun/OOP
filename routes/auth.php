@@ -1,12 +1,10 @@
-<?php 
+<?php
 
 if (empty($_SESSION))
     session_start();
 
-if (empty($_SESSION["_admin_log_"])) {
-    if (!(in_array(pageName(), ignoreAuthPage()) || (in_array(uri(), ignoreAuthPage()))))
-        fail();
-}
+if (empty($_SESSION["_admin_log_"]) && !(in_array(uri(), ignoreAuthPage())))
+    fail();
 
-if (uri() === ('login/secret/' . md5(secretKey('secret_login'))) && isset($_SESSION["_admin_log_"]))
+if (isset($_SESSION["_admin_log_"]) && uri() === ('login/secret/' . md5(secretKey('secret_login'))))
     redirect('/');

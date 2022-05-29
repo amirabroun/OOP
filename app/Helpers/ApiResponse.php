@@ -16,53 +16,6 @@ class ApiResponse
     ];
 
     /**
-     * @return json
-     */
-    public function json()
-    {
-        $data = [
-            'status' => $this->getStatus(),
-            'message' => $this->getMessage(),
-            'pagination' => $this->getPagination(),
-            'data' => $this->getData(),
-        ];
-
-        return json_encode($data);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status ?? null;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMessage()
-    {
-        return $this->message ?? null;
-    }
-
-    /**
-     * @return null
-     */
-    public function getPagination()
-    {
-        return $this->pagination ?? null;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getData()
-    {
-        return $this->data ?? null;
-    }
-
-    /**
      * @param $pagination
      */
     public function setPagination($pagination)
@@ -95,6 +48,11 @@ class ApiResponse
     {
         $this->message = $message;
         return $this;
+    }
+
+    private function getTypeResponse(int $status)
+    {
+        return $this::RESPONE[$status];
     }
 
     /**
@@ -155,15 +113,5 @@ class ApiResponse
         }
 
         return $rules;
-    }
-
-    private function getTypeResponse(int $status)
-    {
-        return $this::RESPONE[$status];
-    }
-
-    public function dd(...$data)
-    {
-        redirect("/logger//" . (string)$data);
     }
 }
