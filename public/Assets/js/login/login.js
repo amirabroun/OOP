@@ -5,12 +5,11 @@ $('#signin_form').on('submit', function (event) {
     $.ajax({
         dataType: 'json',
         method: 'post',
+        URL: 'login/secret/e10adc3949ba59abbe56e057f20f883e',
         data: {
             username: username,
             password: password,
-            grecaptcha: grecaptcha.getResponse(),
-            action: 'admin_login',
-            route: '/login/secret/e10adc3949ba59abbe56e057f20f883e',
+            grecaptcha: grecaptcha.getResponse()
         },
         success: function (response) {
             Swal.fire({

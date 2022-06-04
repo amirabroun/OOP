@@ -746,7 +746,7 @@
                         </div>
                     </li>
                     <li class="menu-item menu-item-submenu menu-item-rel">
-                        <form action="" method="post">
+                        <form action="/logOut" method="post">
                             <input type="hidden" name="route" value="log-out">
                             <button type="submit" class="btn btn-light">خروج</button>
                         </form>

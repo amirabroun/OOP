@@ -10,9 +10,17 @@ class Router
     public object|string|null $function;
     public object|string|null $request;
 
+    private static $resources = '/resources/Views/';
+
     public function __construct(private $route = null, $actionTo = null)
     {
-        if ($actionTo) $this->findAction($actionTo)->run();
+        if ($actionTo) {
+            if ($_SERVER['REQUEST_METHOD'] === 'GET')
+                $this->includePath($actionTo);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+                $this->findAction($actionTo)->run();
+        }
     }
 
     public function run()
@@ -34,6 +42,23 @@ class Router
         $this->request = $this->findSpecialRequest($this->function);
 
         return $this;
+    }
+
+    public function includePath($path)
+    {
+        $route = explode('/', $this->route);
+        $routeUri = explode('/', uri());
+
+        foreach ($route as $key => $partRoute) {
+            if (!isParamRouteSection($partRoute)) continue;
+
+            $var = trim($partRoute, '{}');
+            $$var = ($routeUri[$key]);
+        }
+
+        strpos($path, 'resources')
+            ? require($_SERVER['DOCUMENT_ROOT'] . $path)
+            : require($_SERVER['DOCUMENT_ROOT'] . self::$resources . preparePath($path));
     }
 
     public function findSpecialMethodController(array|string $action)

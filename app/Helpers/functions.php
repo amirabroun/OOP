@@ -71,11 +71,7 @@ function productLink($id)
 
 function dd(...$data)
 {
-    var_dump((object)$data);
-    die(var_dump([
-        'uri' => uri(),
-        'line' => __LINE__,
-    ]));
+    die(var_dump((object)$data));
 }
 
 function ddd(...$data)
@@ -103,7 +99,7 @@ function responseJson($data)
 
 function redirect($path)
 {
-    header("location: $path");
+    header('Location: ' . $path);
     exit();
 }
 

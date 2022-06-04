@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fa" direction="rtl" dir="rtl" style="direction: rtl">
 
 <head>

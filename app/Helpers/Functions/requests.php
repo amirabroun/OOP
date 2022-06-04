@@ -1,5 +1,8 @@
 <?php
 
+if (($_SERVER['REQUEST_URI'] != "/") and preg_match('{/$}', $_SERVER['REQUEST_URI']))
+    redirect(preg_replace('{/$}', '', $_SERVER['REQUEST_URI']));
+
 function POST($key = 'all-$_POST')
 {
     if ($key === 'all-$_POST') {
@@ -60,7 +63,7 @@ function pageName()
 
 function uri()
 {
-    return ltrim(str_replace('.php', '', $_SERVER['REQUEST_URI']), '/');
+    return trim($_SERVER['REQUEST_URI'], '/');
 }
 
 function checkAction($action)
@@ -72,14 +75,28 @@ function checkAction($action)
     return true;
 }
 
-function checkUri($uri)
+function checkRoute($route)
 {
-    return POST("route") && POST("route") === $uri ? true : false;
+    $routeParts = explode('/', $route);
+    $uriParts = explode('/', uri());
+
+    if (count($routeParts) !== count($uriParts)) return false;
+
+    foreach ($routeParts as $key => $partRoute) {
+        if ($partRoute !== $uriParts[$key] && !isParamRouteSection($partRoute)) return false;
+    }
+
+    return true;
 }
 
-function checkPostUri($uri)
+function checkPostRoute(string $route)
 {
-    return $_SERVER['REQUEST_METHOD'] === 'POST' && checkUri($uri) ? true : false;
+    return $_SERVER['REQUEST_METHOD'] !== 'POST' || !checkRoute($route) ? false : true;
+}
+
+function checkGetRoute(string $route)
+{
+    return $_SERVER['REQUEST_METHOD'] !== 'GET' || !checkRoute($route) ? false : true;
 }
 
 function getAction()
