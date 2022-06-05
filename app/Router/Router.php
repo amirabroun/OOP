@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use ReflectionFunction;
 use ReflectionMethod;
 
 class Router
@@ -10,21 +11,25 @@ class Router
     public object|string|null $function;
     public array|null $request;
 
-    private static $resources = '/resources/Views/';
-
-    public function __construct(private $route = null, $actionTo = null)
+    public function __construct(private $route = null, $action = null)
     {
-        if (is_callable($actionTo)) {
-            call_user_func($actionTo);
+        if (is_callable($action)) {
+            if ($this->request = $this->findParamFunction($action)) {
+                call_user_func_array($action, $this->request);
+                exit;
+            }
+
+            call_user_func($action);
+            exit;
         }
 
-        if ($actionTo) {
+        if ($action) {
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                $this->includePath($actionTo);
+                $this->includePath($action);
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $this->findAction($actionTo)->run();
+                $this->findAction($action)->run();
             }
         }
     }
@@ -44,7 +49,7 @@ class Router
 
     public function findAction($action)
     {
-        $action = $this->findSpecialMethodController($action);
+        $action = $this->findMethodController($action);
         $this->controller = $action['controller'];
         $this->function = $action['function'];
         $this->request = $this->findParamFunction($this->function);
@@ -64,12 +69,10 @@ class Router
             $$var = ($routeUri[$key]);
         }
 
-        strpos($path, 'resources')
-            ? require($_SERVER['DOCUMENT_ROOT'] . $path)
-            : require($_SERVER['DOCUMENT_ROOT'] . self::$resources . preparePath($path));
+        includePath()->view($path);
     }
 
-    public function findSpecialMethodController(array|string $action)
+    public function findMethodController(array|string $action)
     {
         if (is_string($action)) {
             $controller = "App\\Controllers\\" . substr($action, 0, strpos($action, "@"));
@@ -87,8 +90,13 @@ class Router
 
     private function findParamFunction($function)
     {
-        $classMethod = new ReflectionMethod($this->controller, $function);
-        $parameters = $classMethod->getParameters();
+        if (isset($this->controller)) {
+            $method = new ReflectionMethod($this->controller, $function);
+        } else {
+            $method = new ReflectionFunction($function);
+        }
+
+        $parameters = $method->getParameters();
 
         if (isEmpty($parameters)) {
             return null;
