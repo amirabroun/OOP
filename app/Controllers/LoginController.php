@@ -29,12 +29,7 @@ class LoginController extends Controller
             unset($_SESSION['_admin_log_']);
         }
 
-        redirect('/login/secret/' . md5(secretKey('secret_login')));
-    }
-
-    public function formTest(LoginRequest $request, int $id, string $name)
-    {
-        dd($request, $name, $id);
+        redirect()->route('/login/secret/' . md5(secretKey('secret_login')));
     }
 
     private function successAdminLogin(object $admin)

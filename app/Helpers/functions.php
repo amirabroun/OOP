@@ -76,11 +76,7 @@ function dd(...$data)
 
 function ddd(...$data)
 {
-    die(json_encode([
-        $data,
-        'page name' => pageName(),
-        'uri' => uri(),
-    ]));
+    die(json_encode([$data]));
 }
 
 function bcrypt($password, $hash = null)
@@ -96,7 +92,6 @@ function responseJson($data)
 {
     die(json_encode($data));
 }
-
 
 function recaptchaVerify($secret_key, $token): bool
 {
