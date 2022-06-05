@@ -3,8 +3,25 @@
 use App\Router\Route;
 
 // test
-Route::get('/test', 'test');
+Route::get('/test', function () {
+    // redirect(preparePath('resources.Views.test'))->route();
+});
+
+Route::get('/test', function () {
+    redirect(route('/'));
+});
+
+// Route::get('/test', function () {
+//     redirect()->route('/');
+//     redirect()->rescource('/');
+//     redirect()->assets('/');
+// });
+
 Route::get('/form', 'test-form');
+Route::post('/form/id/{id}/{name}')
+    ->controller(App\Controllers\LoginController::class)
+    ->function('formTest');
+
 Route::get('/test/{name}', 'test');
 Route::get('users/{name}/mobile/{phoneNumber}', 'test');
 

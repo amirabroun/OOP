@@ -12,18 +12,29 @@ class LoginController extends Controller
     {
         $admin = $request->validated();
 
-        if (!$this->recaptchaVerify($admin->grecaptcha)) $this->failRecaptchaVerify();
+        if (!$this->recaptchaVerify($admin->grecaptcha)) {
+            $this->failRecaptchaVerify();
+        }
 
-        if (!$admin = Admin::doLogin($admin->username, $admin->password)) $this->failAdminLogin();
+        if (!$admin = Admin::doLogin($admin->username, $admin->password)) {
+            $this->failAdminLogin();
+        }
 
         $this->successAdminLogin($admin);
     }
 
     public function logOut()
     {
-        if (isset($_SESSION['_admin_log_'])) unset($_SESSION['_admin_log_']);
+        if (isset($_SESSION['_admin_log_'])) {
+            unset($_SESSION['_admin_log_']);
+        }
 
         redirect('/login/secret/' . md5(secretKey('secret_login')));
+    }
+
+    public function formTest(LoginRequest $request, int $id, string $name)
+    {
+        dd($request, $name, $id);
     }
 
     private function successAdminLogin(object $admin)

@@ -1,7 +1,6 @@
 <?php
 
-if (($_SERVER['REQUEST_URI'] != "/") and preg_match('{/$}', $_SERVER['REQUEST_URI']))
-    redirect(preg_replace('{/$}', '', $_SERVER['REQUEST_URI']));
+use App\Helpers\Requests;
 
 function POST($key = 'all-$_POST')
 {
@@ -28,6 +27,16 @@ function REQUEST($key = 'all-$_REQUEST')
     }
 
     return $_REQUEST[$key] ?? null;
+}
+
+function redirect($path = null)
+{
+    if ($path) {
+        header('Location: ' . $path);
+        exit();
+    }
+
+    return new Requests;
 }
 
 function back($url = '/')
@@ -107,6 +116,16 @@ function getAction()
 function preparePath(string $path): string
 {
     return str_replace('.', '/', $path) . '.php';
+}
+
+function route()
+{
+}
+
+function includePath($path)
+{
+    require($_SERVER['DOCUMENT_ROOT'] . preparePath($path));
+    exit;
 }
 
 function set_csrf()

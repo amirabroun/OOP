@@ -4,18 +4,22 @@ namespace App\Router;
 
 class Route
 {
-    public static function get(string $route, array|string|null $action = null)
+    public static function get(string $route, $action = null)
     {
-        $route = trim($route, '/');
+        if (!checkGetRoute($route = trim($route, '/'))) {
+            return new Router;
+        }
 
-        return checkGetRoute($route) ? new Router($route, $action) : new Router;
+        return new Router($route, $action);
     }
 
-    public static function post(string $route, array|string|null $action = null)
+    public static function post(string $route, $action = null)
     {
-        $route = trim($route, '/');
+        if (!checkPostRoute($route = trim($route, '/'))) {
+            return new Router;
+        }
 
-        return checkPostRoute($route) ? new Router($route, $action) : new Router;
+        return new Router($route, $action);
     }
 
     // create: put, patch, delete, any

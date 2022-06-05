@@ -1,5 +1,5 @@
 <div class="login-form login-signin py-1">
-    <form class="form" novalidate="novalidate" method="POST">
+    <form class="form" novalidate="novalidate" method="POST" action="/form/id/12/6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder text-dark">نام کاربری:</label>
             <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" type="text" name="username" autocomplete="off" />

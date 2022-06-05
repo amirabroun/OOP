@@ -97,11 +97,6 @@ function responseJson($data)
     die(json_encode($data));
 }
 
-function redirect($path)
-{
-    header('Location: ' . $path);
-    exit();
-}
 
 function recaptchaVerify($secret_key, $token): bool
 {
