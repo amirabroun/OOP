@@ -5,7 +5,7 @@ if (empty($_SESSION)) {
 }
 
 if (($_SERVER['REQUEST_URI'] != "/") and preg_match('{/$}', $_SERVER['REQUEST_URI'])) {
-    redirect(preg_replace('{/$}', '', $_SERVER['REQUEST_URI']));
+    redirect()->route(preg_replace('{/$}', '', $_SERVER['REQUEST_URI']));
 }
 
 if (empty($_SESSION["_admin_log_"]) && !(in_array(uri(), ignoreAuthPage()))) {
@@ -13,5 +13,5 @@ if (empty($_SESSION["_admin_log_"]) && !(in_array(uri(), ignoreAuthPage()))) {
 }
 
 if (isset($_SESSION["_admin_log_"]) && uri() === ('login/secret/' . md5(secretKey('secret_login')))) {
-    redirect('/')->route('/');
+    redirect()->route('/');
 }

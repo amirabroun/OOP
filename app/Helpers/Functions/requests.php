@@ -36,12 +36,22 @@ function redirect($path = null)
         exit();
     }
 
-    return new Requests;
+    return new Requests(__FUNCTION__);
+}
+
+function includePath($path = null)
+{
+    if ($path) {
+        require($_SERVER['DOCUMENT_ROOT'] . $path);
+        exit;
+    }
+
+    return new Requests(__FUNCTION__);
 }
 
 function back($url = '/')
 {
-    redirect($_SERVER['HTTP_REFERER'] ?? $url);
+    redirect()->route($_SERVER['HTTP_REFERER'] ?? $url);
 }
 
 function fail($code = 404)
@@ -108,24 +118,9 @@ function checkGetRoute(string $route)
     return $_SERVER['REQUEST_METHOD'] !== 'GET' || !checkRoute($route) ? false : true;
 }
 
-function getAction()
-{
-    dd(POST("action"));
-}
-
 function preparePath(string $path): string
 {
     return str_replace('.', '/', $path) . '.php';
-}
-
-function route()
-{
-}
-
-function includePath($path)
-{
-    require($_SERVER['DOCUMENT_ROOT'] . preparePath($path));
-    exit;
 }
 
 function set_csrf()
