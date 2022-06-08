@@ -6,16 +6,42 @@ use App\DataBase\DataBase;
 use PDO;
 use PDOStatement;
 
-class Model
+abstract class Model
 {
     protected array $fillable = [];
-    
+    protected string $string = '';
+    protected $table;
+
     private PDOStatement $sql;
     private PDO $action;
 
-    public function __construct($sql)
+    public function __construct()
     {
-        $this->sql = self::prepareSQL($sql);
+        // $this->sql = self::prepareSQL($sql);
+    }
+
+    public static function query()
+    {
+        return new (static::class);
+    }
+
+    public function where($column, $op, $value)
+    {
+        $this->string .=  "where $column $op $value";
+
+        return $this;
+    }
+
+    public function get($column = ['*'])
+    {
+        $selected = '';
+
+        foreach ($column as $c) {
+            $selected .= "$c";
+        }
+
+        $this->string = "SELECT $selected From $this->table " . $this->string . ';';
+        return (new DataBase)->cn->prepare($this->string)->fetchObject();
     }
 
     public static function prepareSQL($sql)
@@ -68,3 +94,6 @@ class Model
         return $this->action->lastInsertId();
     }
 }
+
+// example
+// (Category::query()->where('id', '=', 1)->get());
