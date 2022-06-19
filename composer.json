@@ -5,9 +5,7 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/functions.php",
-            "routes/auth.php",
-            "routes/route.php"
+            "app/Helpers/functions.php"
         ]
     },
     "authors": [
