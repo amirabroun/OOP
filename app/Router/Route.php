@@ -2,25 +2,39 @@
 
 namespace App\Router;
 
-class Route
+use App\Provider\RouteServiceProvider;
+
+class Route extends RouteServiceProvider
 {
+
+
     public static function get(string $route, $action = null)
     {
-        if (!checkGetRoute($route = trim($route, '/'))) {
-            return new Router;
-        }
-
-        return new Router($route, $action);
+        return new Router(__FUNCTION__, $route, $action);
     }
 
     public static function post(string $route, $action = null)
     {
-        if (!checkPostRoute($route = trim($route, '/'))) {
-            return new Router;
-        }
-
-        return new Router($route, $action);
+        return new Router(__FUNCTION__, $route, $action);
     }
 
-    // create: put, patch, delete, any
+    public static function put(string $route, $action = null)
+    {
+        return new Router(__FUNCTION__, $route, $action);
+    }
+
+    public static function patch(string $route, $action = null)
+    {
+        return new Router(__FUNCTION__, $route, $action);
+    }
+
+    public static function delete(string $route, $action = null)
+    {
+        return new Router(__FUNCTION__, $route, $action);
+    }
+
+    public static function any(string $route, $action = null)
+    {
+        return new Router(__FUNCTION__, $route, $action);
+    }
 }
