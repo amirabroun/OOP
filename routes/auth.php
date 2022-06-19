@@ -4,8 +4,8 @@ if (empty($_SESSION)) {
     session_start();
 }
 
-if (($_SERVER['REQUEST_URI'] != "/") and preg_match('{/$}', $_SERVER['REQUEST_URI'])) {
-    redirect()->route(preg_replace('{/$}', '', $_SERVER['REQUEST_URI']));
+if ((uri() != "/") and preg_match('{/$}', uri())) {
+    redirect()->route(preg_replace('{/$}', '', uri()));
 }
 
 if (empty($_SESSION["_admin_log_"]) && !(in_array(uri(), ignoreAuthPage()))) {

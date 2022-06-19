@@ -5,9 +5,7 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/functions.php",
-            "routes/auth.php",
-            "routes/route.php"
+            "app/Helpers/functions.php"
         ]
     },
     "authors": [
@@ -15,8 +13,5 @@
             "name": "amirabroun",
             "email": "abroon234@gmail.com"
         }
-    ],
-    "require": {
-        "bramus/router": "^1.6"
-    }
+    ]
 }

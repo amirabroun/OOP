@@ -85,6 +85,11 @@ function uri()
     return trim($_SERVER['REQUEST_URI'], '/');
 }
 
+function requestMethod()
+{
+    return trim($_SERVER['REQUEST_METHOD'], '/');
+}
+
 function checkAction($action)
 {
     if (!(POST("action") && POST("action") === $action)) {
