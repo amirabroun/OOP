@@ -13,8 +13,5 @@
             "name": "amirabroun",
             "email": "abroon234@gmail.com"
         }
-    ],
-    "require": {
-        "bramus/router": "^1.6"
-    }
+    ]
 }
