@@ -1,11 +1,16 @@
 <?php
 
+use App\Provider\RouteServiceProvider;
 use App\Router\Route;
 
 Route::get('/', 'index');
 
+Route::put('/test', function () {
+    includePath()->view('/test');
+});
+
 Route::get('/test', function () {
-    redirect()->route('/');
+    includePath()->view('/test');
 });
 
 // login
@@ -24,4 +29,5 @@ Route::get('/brands', 'brand.brands');
 Route::get('/categories', 'category.categories');
 Route::get('/users', 'user.users');
 
-throw new ErrorException('(' . originBaseUrl() . uri() . ' : route not exist)', 0, 1, 'route', 0);
+// dd(RouteServiceProvider::$routes);
+// throw new ErrorException('(' . originBaseUrl() . uri() . ' : route not exist)', 0, 1, 'route', 0);
