@@ -4,15 +4,19 @@ namespace App\Router;
 
 use App\Provider\RouteServiceProvider;
 
-class Router extends RouteServiceProvider
+class Router
 {
     public $controller;
     public $function;
     public $requestMethod;
 
-    public function __construct($requestMethod, private $route, private $action = null)
+    public $route;
+
+    public function __construct($requestMethod, $route, public $action = null)
     {
         $this->requestMethod = strtoupper($requestMethod);
+
+        $this->route = trim($route, '/');
 
         $this->setRouterToServiceProvider();
     }
@@ -37,6 +41,6 @@ class Router extends RouteServiceProvider
 
     private function setRouterToServiceProvider()
     {
-        parent::$routes[$this->requestMethod][$this->route] = $this;
+        RouteServiceProvider::$routes[$this->requestMethod][$this->route] = $this;
     }
 }

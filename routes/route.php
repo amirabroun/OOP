@@ -1,20 +1,22 @@
 <?php
 
-use App\Provider\RouteServiceProvider;
 use App\Router\Route;
 
-Route::get('/', 'index');
-
-Route::put('/test', function () {
+// test
+Route::get('/test/{name}', function ($name, $kfa) {
     includePath()->view('/test');
 });
 
-Route::get('/test', function () {
-    includePath()->view('/test');
+// index
+Route::get('/', function () {
+    includePath()->view('index');
 });
 
-// login
-Route::get('/login/secret/' . md5(secretKey('secret_login')), 'auth.login');
+// auth
+Route::get('/login/secret/' . md5(secretKey('secret_login')), function () {
+    includePath()->view('auth.login');
+});
+
 Route::post('/login/secret/' . md5(secretKey('secret_login')))
     ->controller(App\Controllers\LoginController::class)
     ->function('adminLogin');
@@ -22,12 +24,25 @@ Route::post('/login/secret/' . md5(secretKey('secret_login')))
 Route::post('logOut', 'LoginController@logOut');
 
 // product
-Route::get('/products', 'product.products');
-Route::get('/products/{id}', 'product.single-product');
+Route::get('/products', function () {
+    includePath()->view('product.products');
+});
 
-Route::get('/brands', 'brand.brands');
-Route::get('/categories', 'category.categories');
-Route::get('/users', 'user.users');
+Route::get('/products/{id}',  function () {
+    includePath()->view('product.single-product');
+});
 
-// dd(RouteServiceProvider::$routes);
-// throw new ErrorException('(' . originBaseUrl() . uri() . ' : route not exist)', 0, 1, 'route', 0);
+// brand
+Route::get('/brands', function () {
+    includePath()->view('brand.brands');
+});
+
+// category
+Route::get('/categories', function () {
+    includePath()->view('category.categories');
+});
+
+// user
+Route::get('/users', function () {
+    includePath()->view('user.users');
+});
