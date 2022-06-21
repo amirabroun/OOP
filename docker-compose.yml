@@ -7,16 +7,16 @@ services:
         links:
             - php
         volumes:
-            - /:/usr/share/nginx/www
+            - ${PWD}:/usr/share/nginx/www
         ports:
-            - 8010:80
+            - 8000:80
 
     php:
         container_name: php-didishop
         build: ./Docker/php
         volumes:
-            - /:/usr/share/nginx/www
-        working_dir: /:/usr/share/nginx/www
+            - ${PWD}:/usr/share/nginx/www
+        working_dir: ${PWD}:/usr/share/nginx/www
         env_file:
             - ./.env
 
