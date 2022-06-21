@@ -99,7 +99,7 @@ function checkAction($action)
     return true;
 }
 
-function checkRoute($route)
+function checkRoute(string $route)
 {
     $routeParts = explode('/', $route);
     $uriParts = explode('/', uri());

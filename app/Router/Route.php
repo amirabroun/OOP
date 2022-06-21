@@ -2,11 +2,8 @@
 
 namespace App\Router;
 
-use App\Provider\RouteServiceProvider;
-
-class Route extends RouteServiceProvider
+class Route 
 {
-
 
     public static function get(string $route, $action = null)
     {
