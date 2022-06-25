@@ -29,9 +29,13 @@ function REQUEST($key = 'all-$_REQUEST')
     return $_REQUEST[$key] ?? null;
 }
 
-function redirect($path = null)
+function redirect($path = null, $with = [])
 {
     if ($path) {
+        foreach ($with as $var => $value) {
+            $$var = $value;
+        }
+
         header('Location: ' . $path);
         exit();
     }
@@ -39,9 +43,13 @@ function redirect($path = null)
     return new Requests(__FUNCTION__);
 }
 
-function includePath($path = null)
+function includePath($path = null, $with = [])
 {
     if ($path) {
+        foreach ($with as $var => $value) {
+            $$var = $value;
+        }
+
         require($_SERVER['DOCUMENT_ROOT'] . $path);
         exit;
     }

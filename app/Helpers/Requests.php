@@ -8,18 +8,18 @@ class Requests
     {
     }
 
-    public function route($route)
+    public function route($route, array $with = [])
     {
-        ($this->action)($route);
+        ($this->action)($route, $with);
     }
 
-    public function resource($path)
+    public function resource($path, array $with = [])
     {
-        ($this->action)('/resources' . '/' . preparePath($path));
+        ($this->action)('/resources' . '/' . preparePath($path), $with);
     }
 
-    public function view($path)
+    public function view($path, array $with = [])
     {
-        ($this->action)('/resources/Views/' . preparePath($path));
+        ($this->action)('/resources/Views/' . preparePath($path), $with);
     }
 }

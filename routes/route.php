@@ -3,8 +3,8 @@
 use App\Router\Route;
 
 // test
-Route::get('/test/{name}', function ($name, $kfa) {
-    includePath()->view('/test');
+Route::get('/test/{name}', function ($name) {
+    includePath()->view('/test', ['name' => $name]);
 });
 
 // index
@@ -28,8 +28,8 @@ Route::get('/products', function () {
     includePath()->view('product.products');
 });
 
-Route::get('/products/{id}',  function () {
-    includePath()->view('product.single-product');
+Route::get('/products/{id}',  function ($id) {
+    includePath()->view('product.single-product', ['id' => $id]);
 });
 
 // brand
