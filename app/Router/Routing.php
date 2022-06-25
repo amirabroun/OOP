@@ -11,12 +11,7 @@ class Routing
     protected string $route;
     protected Router $router;
 
-    public function __construct()
-    {
-        $this->setRoute()->setRouter()->run();
-    }
-
-    private function setRoute()
+    public function findRoute()
     {
         if (isset(RouteServiceProvider::$routes[requestMethod()][uri()])) {
             $this->route = uri();
@@ -37,15 +32,19 @@ class Routing
         return $this;
     }
 
-    private function setRouter()
+    public function findRouter()
     {
         $this->router = RouteServiceProvider::$routes[requestMethod()][$this->route];
 
         return $this;
     }
 
-    private function run()
+    public function run()
     {
+        if (is_string($this->router->action) || is_array($this->router->action)) {
+            $this->findAction($this->router->action);
+        }
+
         if (is_callable($this->router->action)) {
             if ($paramFunction = $this->getUriDataForCreateParamFunction($this->router->action)) {
                 call_user_func_array($this->router->action, $paramFunction);
@@ -61,6 +60,19 @@ class Routing
         }
 
         call_user_func([new $this->router->controller, $this->router->function]);
+    }
+
+    public function findAction(string|array $action)
+    {
+        if (is_string($action)) {
+            $this->router->controller = "App\\Controllers\\" . substr($action, 0, strpos($action, "@"));
+            $this->router->function = substr($action, strpos($action, "@") + 1);
+        } else {
+            $this->router->controller = $action[0];
+            $this->router->function = $action[1];
+        }
+
+        return $this;
     }
 
     private function getUriDataForCreateParamFunction($function, $controller = null)
